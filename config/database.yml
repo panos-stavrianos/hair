@@ -52,6 +52,6 @@ test:
 #
 production:
   <<: *default
-  database: hair_production
+#  database: hair_production
   url: <%= ENV['DATABASE_URL'] %>
 
