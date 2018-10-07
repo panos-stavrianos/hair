@@ -52,5 +52,5 @@ test:
 production:
   <<: *default
 #  database: hair_production
-  url: ENV['CLEARDB_DATABASE_URL']
+  DATABASE_URL: ENV['DATABASE_URL']
 
