@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: hair_production
-  username: hair
-  password: <%= ENV['DB_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+
