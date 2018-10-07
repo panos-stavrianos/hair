@@ -17,9 +17,11 @@ default: &default
 development:
   <<: *default
   database: hair_development
-  username: hair
-  password: <%= ENV['DB_PASSWORD'] %>
-  socket: /var/run/mysqld/mysqld.sock
+#  username: hair
+#  password: <%= ENV['DB_PASSWORD'] %>
+#  socket: /var/run/mysqld/mysqld.sock
+  DATABASE_URL: ENV['DATABASE_URL']
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -27,9 +29,11 @@ development:
 test:
   <<: *default
   database: hair_test
-  username: hair
-  password: <%= ENV['DB_PASSWORD'] %>
-  socket: /var/run/mysqld/mysqld.sock
+#  username: hair
+#  password: <%= ENV['DB_PASSWORD'] %>
+#  socket: /var/run/mysqld/mysqld.sock
+  DATABASE_URL: ENV['DATABASE_URL']
+
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -51,6 +55,6 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 production:
   <<: *default
-#  database: hair_production
+  database: hair_production
   DATABASE_URL: ENV['DATABASE_URL']
 
