@@ -48,7 +48,6 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
   database: hair_production
   url: <%= ENV['DATABASE_URL'] %>
 
