@@ -55,10 +55,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 production:
   <<: *default
-  database: <%= ENV['DB_DATABASE'] %>
-  host: <%= ENV['DB_URL'] %>
-  username: <%=  ENV['DB_USERNAME'] %>
-  password: <%=  ENV['DB_PASSWORD'] %>
-#  database_url: <%=  ENV['CLEARDB_DATABASE_URL'] %>
+#  database: <%= ENV['DB_DATABASE'] %>
+#  host: <%= ENV['DB_URL'] %>
+#  username: <%=  ENV['DB_USERNAME'] %>
+#  password: <%=  ENV['DB_PASSWORD'] %>
+  database_url: <%=  ENV['CLEARDB_DATABASE_URL'] %>
 
 
