@@ -19,7 +19,7 @@ development:
   database: hair_development
   username: hair
   password: <%= ENV['DB_PASSWORD'] %>
-  socket: /var/run/mysqld/mysqld.sock
+#  socket: /var/run/mysqld/mysqld.sock
 
 
 
@@ -31,7 +31,7 @@ test:
   database: hair_test
   username: hair
   password: <%= ENV['DB_PASSWORD'] %>
-  socket: /var/run/mysqld/mysqld.sock
+#  socket: /var/run/mysqld/mysqld.sock
 
 
 
