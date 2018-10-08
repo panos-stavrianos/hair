@@ -17,10 +17,10 @@ default: &default
 development:
   <<: *default
   database: hair_development
-#  username: hair
-#  password: <%= ENV['DB_PASSWORD'] %>
-#  socket: /var/run/mysqld/mysqld.sock
-  DATABASE_URL: ENV['DATABASE_URL']
+  username: hair
+  password: <%= ENV['DB_PASSWORD'] %>
+  socket: /var/run/mysqld/mysqld.sock
+
 
 
 # Warning: The database defined as "test" will be erased and
@@ -29,10 +29,10 @@ development:
 test:
   <<: *default
   database: hair_test
-#  username: hair
-#  password: <%= ENV['DB_PASSWORD'] %>
-#  socket: /var/run/mysqld/mysqld.sock
-  DATABASE_URL: ENV['DATABASE_URL']
+  username: hair
+  password: <%= ENV['DB_PASSWORD'] %>
+  socket: /var/run/mysqld/mysqld.sock
+
 
 
 # As with config/secrets.yml, you never want to store sensitive information,
@@ -55,6 +55,8 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 production:
   <<: *default
-  database: hair_production
-  DATABASE_URL: ENV['DATABASE_URL']
+  database: <%= ENV['DB_DATABASE'] %>
+  host: <%= ENV['DB_URL'] %>
+  username: <%=  ENV['DB_USERNAME'] %>
+  password: <%=  ENV['DB_PASSWORD'] %>
 
