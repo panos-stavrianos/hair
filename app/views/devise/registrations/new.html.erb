@@ -1,0 +1,43 @@
+<div class="login_wrapper">
+  <div class="animate form login_form">
+    <div id="register" class="animate form login_form">
+      <section class="login_content">
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <h1>Create Account</h1>
+
+          <div class="field">
+            <%= f.text_field :username, class: 'form-control', placeholder: 'Username' %>
+          </div>
+
+          <div class="field">
+            <%= f.email_field :email, class: 'form-control', autocomplete: 'email', placeholder: 'Email' %>
+          </div>
+
+          <div class="field">
+            <% if @minimum_password_length %>
+              <inline><%= @minimum_password_length %> characters minimum</inline>
+            <% end %>
+            <%= f.password_field :password,   class: 'form-control', autocomplete: 'new-password', placeholder: 'Password' %>
+
+          </div>
+          <div class="field">
+            <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control', placeholder: 'Confirm Password' %>
+          </div>
+
+          <%= f.submit 'Sing up', class: 'btn btn-default submit' %>
+        <% end %>
+
+        <div class="clearfix"></div>
+        <div class="separator">
+          <p class="change_link">Already a member ?
+            <%= link_to "Log in", new_session_path(resource_name) %>
+          </p>
+        </div>
+
+      </section>
+    </div>
+  </div>
+</div>
+
+

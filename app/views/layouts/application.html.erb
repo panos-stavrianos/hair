@@ -1,15 +1,37 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Hair</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<html lang="en">
+<head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-    <%= yield %>
-  </body>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <title><%= yield :title %></title>
+
+</head>
+
+<body class="nav-md">
+<div class="container body">
+  <div class="main_container">
+    <%= render partial: 'layouts/shared/leftnav' %>
+    <%= render partial: 'layouts/shared/topnav' %>
+    <div class="right_col" role="main">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
+    <%= render partial: 'layouts/shared/footer' %>
+  </div>
+</div>
+
+</body>
+<%= javascript_include_tag 'gentelella-custom' %>
+
 </html>
