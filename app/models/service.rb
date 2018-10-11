@@ -8,4 +8,8 @@ class Service < ApplicationRecord
     self.user = current_user if user.nil?
     save
   end
+
+  def to_s
+    "#{name} - #{description} - #{price}$"
+  end
 end

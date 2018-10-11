@@ -1,0 +1,35 @@
+<div class="x_panel">
+  <div class="x_title">
+    <h2 id="dd">Add Product/Service</h2>
+    <div class="clearfix"></div>
+  </div>
+  <button id="aa">Add</button>
+  <div class="x_content">
+
+    <% i = 0 %>
+
+    <%= bootstrap_form_tag url: dashboard_index_path do |form| %>
+      <%= form.select :record, @customers, {label: 'Select customer:'}, {class: 'selectpicker ', 'data-live-search' => 'true'} %>
+
+      <div id="aas">
+        <%= render partial: 'dashboard/customer_form', locals: {fai: ++i, form: form} %>
+      </div>
+
+      <script>
+          $('#aa').click(function () {
+              $('#aas').append("<%= escape_javascript (render partial: 'dashboard/customer_form', locals: {fai: ++i,form: form} ) %>");
+          })
+      </script>
+
+      <div class="actions">
+        <%= submit_tag %>
+      </div>
+    <% end %>
+
+
+  </div>
+</div>
+
+
+
+

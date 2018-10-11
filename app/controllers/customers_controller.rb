@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
   end
 
   def create
-    @customer = Customer.new(customer_params).create_with_user(current_user)
+    @record = Customer.new(customer_params).create_with_user(current_user)
     redirect_to customers_path
   end
 
@@ -29,6 +29,6 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:name, :phone_1, :phone_2, :comment)
+    params.require(:record).permit(:name, :phone_1, :phone_2, :comment)
   end
 end

@@ -18,8 +18,6 @@ module ApplicationHelper
     ('<td>' + link_to("#{icon(icon_class)}".html_safe, options, html_options, &block) + '</td>').html_safe
   end
 
-  private
-
   def icon(icon_class)
     "<span class='#{icon_class}'></span>"
 

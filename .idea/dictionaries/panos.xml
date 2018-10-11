@@ -2,6 +2,7 @@
   <dictionary name="panos">
     <words>
       <w>autocomplete</w>
+      <w>selectpicker</w>
     </words>
   </dictionary>
 </component>

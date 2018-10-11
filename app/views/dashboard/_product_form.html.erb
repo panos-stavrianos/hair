@@ -1,8 +1,13 @@
+<%= form.fields_for 'customer_products[]', CustomerProduct.new do |c| %>
+  <%= c.select(:product_id, @products.collect {|p| [p.name, p.id]}, {include_blank: true}, {class: 'selectpicker', 'data-live-search' => 'true'}) %>
+  <%= c.number_field :amount, label: 'Amount', wrapper: {class: 'col-sm-6'} %>
+  <%= c.number_field :price, label: 'Price', wrapper: {class: 'col-sm-6'} %>
+  <%= c.text_field :comment, label: 'Comment' %>
+<% end %>
 <hr>
-<div class="form-group row">
-  <%= fa.select :product, @products, {label: 'Select product:'}, {class: 'selectpicker', 'data-live-search' => 'true'} %>
-  <%= fa.number_field :amount, label: 'Amount', wrapper: {class: "row col-sm-6"} %>
-  <%= fa.number_field :price, label: 'Price', wrapper: {class: "row col-sm-6"} %>
-</div>
 
+<script>
+    $('.collapse').collapse();
+    $('.selectpicker').selectpicker();
+</script>
 
