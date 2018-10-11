@@ -26,13 +26,13 @@
         <ul class="nav side-menu">
           <li>   <%= link_to('Dashboard', "/") %></li>
           <li>   <%= link_to('Customers', customers_path) %></li>
-          <li>   <%= link_to('Products', products_path) %></li>
           <li>  <%= link_to('Services', services_path) %></li>
+          <li>   <%= link_to('Products', products_path) %></li>
         </ul>
       </div>
     </div>
     <!-- /sidebar menu -->
-     <!-- /menu footer buttons -->
+    <!-- /menu footer buttons -->
     <div class="sidebar-footer hidden-small">
       <%= link_to edit_user_registration_path, :'data-placement' => 'top', :'title' => 'Settings', :'data-toggle' => 'tooltip' do %>
         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
