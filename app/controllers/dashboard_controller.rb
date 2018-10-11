@@ -12,21 +12,22 @@ class DashboardController < ApplicationController
   end
 
   def create
-    unless customer_params[:customer_id].nil?
+    unless p_params[:customer_id].nil?
+      print p_params[:customer_id]
       unless p_params['customer_products'].nil?
         p_params['customer_products'].each do |puppy|
-          unless customer_products_params(puppy)[:product_id].blank?
-            @record = CustomerProduct.new(customer_products_params(puppy))
-            @record.customer_id = customer_params[:customer_id]
+          unless puppy[:product_id].blank?
+            @record = CustomerProduct.new(puppy[:customer_products])
+            @record.customer_id = p_params[:customer_id]
             @record.save
           end
         end
       end
       unless p_params['customer_services'].nil?
         p_params['customer_services'].each do |puppy|
-          unless customer_services_params(puppy)[:service_id].blank?
-            @record = CustomerService.new(customer_services_params(puppy))
-            @record.customer_id = customer_params[:customer_id]
+          unless puppy[:service_id].blank?
+            @record = CustomerService.new(puppy)
+            @record.customer_id = p_params[:customer_id]
             @record.save
           end
         end
@@ -35,17 +36,6 @@ class DashboardController < ApplicationController
     redirect_to dashboard_index_path
   end
 
-  def customer_products_params(params_product)
-    params_product.permit(:product_id, :amount, :price, :comment)
-  end
-
-  def customer_services_params(params_service)
-    params_service.permit(:service_id, :amount, :price, :comment)
-  end
-
-  def customer_params
-    p_params.permit(:customer_id)
-  end
 
   def p_params
     params.permit(:customer_id,
