@@ -5,6 +5,7 @@ class CreateCustomers < ActiveRecord::Migration[5.2]
       t.string :phone_1
       t.string :phone_2
       t.string :comment
+      t.belongs_to :user, index: true
       t.timestamps
     end
   end

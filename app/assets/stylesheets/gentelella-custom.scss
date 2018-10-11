@@ -986,6 +986,7 @@ a:focus {
   border: 4px solid rgba(255, 255, 255, 0.71);
   padding: 2px
 }
+
 .nav-sm .img-circle.site_img {
   border: 0;
 }
@@ -995,6 +996,7 @@ a:focus {
   margin-top: 5px;
   padding: 2px
 }
+
 .nav-sm .img-horizontal.site_img {
   border: 0;
   height: 17px;
@@ -1104,7 +1106,7 @@ a:focus {
 
 footer {
   background: #fff;
-  padding: 15px 20px;
+  padding: 10px 20px;
   display: block
 }
 
@@ -1638,6 +1640,12 @@ table.jambo_table tbody tr.selected td {
   text-align: right
 }
 
+#datatable-check_filter {
+  width: 50%;
+  float: left;
+  text-align: left
+}
+
 .dataTables_info {
   width: 60%;
   float: left
@@ -1652,6 +1660,11 @@ table.dataTable th.focus,
 table.dataTable td.focus {
   outline: 2px solid #1ABB9C !important;
   outline-offset: -1px
+}
+
+table.dataTable tbody tr.selected {
+  color: white;
+  background-color: #6196ee;
 }
 
 table.display {

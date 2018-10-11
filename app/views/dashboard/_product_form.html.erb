@@ -1,0 +1,8 @@
+<hr>
+<div class="form-group row">
+  <%= fa.select :product, @products, {label: 'Select product:'}, {class: 'selectpicker', 'data-live-search' => 'true'} %>
+  <%= fa.number_field :amount, label: 'Amount', wrapper: {class: "row col-sm-6"} %>
+  <%= fa.number_field :price, label: 'Price', wrapper: {class: "row col-sm-6"} %>
+</div>
+
+

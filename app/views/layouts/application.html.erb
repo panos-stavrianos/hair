@@ -11,14 +11,15 @@
   <%= csp_meta_tag %>
 
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
   <title><%= yield :title %></title>
 
 </head>
 
-<body class="nav-md">
-<div class="container body">
+<body class="nav-md footer_fixed">
+<div class="container body" id="body">
+
   <div class="main_container">
     <%= render partial: 'layouts/shared/leftnav' %>
     <%= render partial: 'layouts/shared/topnav' %>
@@ -28,10 +29,12 @@
       <%= yield %>
     </div>
     <%= render partial: 'layouts/shared/footer' %>
+
   </div>
+
 </div>
 
 </body>
-<%= javascript_include_tag 'gentelella-custom' %>
+
 
 </html>

@@ -3,6 +3,9 @@ module ApplicationHelper
     "<td>#{value}</td>".html_safe
   end
 
+  def row_hidden(value)
+    "<td>#{value}</td>".html_safe
+  end
   def delete_row(record)
     row_link_with_icon('glyphicon glyphicon-trash text-danger', record, method: :delete, data: {confirm: 'Are you sure?'})
   end

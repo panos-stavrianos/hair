@@ -1,10 +1,11 @@
 class ProductsController < ApplicationController
+
   def index
-    @records = Product.all
+    @records = Product.by_user(current_user)
   end
 
   def create
-    Product.new(product_params).save
+    Product.new(product_params).create_with_user(current_user)
     redirect_to products_path
   end
 

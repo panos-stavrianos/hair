@@ -1,10 +1,10 @@
 class ServicesController < ApplicationController
   def index
-    @records = Service.all
+    @records = Service.by_user(current_user)
   end
 
   def create
-    Service.new(service_params).save
+    Service.new(service_params).create_with_user(current_user)
     redirect_to services_path
   end
 

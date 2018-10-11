@@ -1,10 +1,10 @@
 class CustomersController < ApplicationController
   def index
-    @records = Customer.all
+    @records = Customer.by_user(current_user)
   end
 
   def create
-    Customer.new(customer_params).save
+    @customer = Customer.new(customer_params).create_with_user(current_user)
     redirect_to customers_path
   end
 

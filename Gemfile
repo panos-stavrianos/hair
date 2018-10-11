@@ -43,6 +43,10 @@ gem 'paperclip', '~> 4.1'
 gem 'cancan'
 gem 'capistrano-rails'
 gem 'bootstrap_form', '>= 4.0.0.alpha1'
+gem 'formtastic', '~> 3.0'
+gem 'simple_form'
+gem 'bootstrap-select-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
