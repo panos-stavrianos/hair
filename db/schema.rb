@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2018_10_08_181827) do
   create_table "customer_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "customer_id"
     t.bigint "product_id"
+    t.bigint "user_id"
     t.integer "amount"
     t.string "price"
     t.string "comment"
@@ -22,11 +23,13 @@ ActiveRecord::Schema.define(version: 2018_10_08_181827) do
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_customer_products_on_customer_id"
     t.index ["product_id"], name: "index_customer_products_on_product_id"
+    t.index ["user_id"], name: "index_customer_products_on_user_id"
   end
 
   create_table "customer_services", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "customer_id"
     t.bigint "service_id"
+    t.bigint "user_id"
     t.integer "amount"
     t.string "price"
     t.string "comment"
@@ -34,6 +37,7 @@ ActiveRecord::Schema.define(version: 2018_10_08_181827) do
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_customer_services_on_customer_id"
     t.index ["service_id"], name: "index_customer_services_on_service_id"
+    t.index ["user_id"], name: "index_customer_services_on_user_id"
   end
 
   create_table "customers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

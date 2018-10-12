@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
-
   belongs_to :user
   has_many :customer_products
   has_many :customers, through: :customer_products
