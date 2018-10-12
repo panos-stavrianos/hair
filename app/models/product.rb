@@ -14,6 +14,6 @@ class Product < ApplicationRecord
   end
 
   def to_s
-    "#{name} - #{description} - #{price}$"
+    "#{name} - #{description} - #{price} €"
   end
 end

@@ -1,11 +1,21 @@
 <%= form.fields_for 'customer_services[]', CustomerService.new do |c| %>
-  <%= c.select(:service_id, @services.collect {|p| [p.name, p.id]}, {include_blank: true}, {class: 'selectpicker', 'data-live-search' => 'true'}) %>
-  <%= c.number_field :amount, label: 'Amount', wrapper: {class: "col-sm-6"} %>
-  <%= c.number_field :price, label: 'Price', wrapper: {class: "col-sm-6"} %>
+  <%= c.select(:service_id, @services.collect {|p| [p, p.id]}, {include_blank: true}, {class: 'selectpicker', 'data-live-search' => 'true'}) %>
+  <%= c.number_field :amount, label: 'Amount',
+                     data: {toggle: 'tooltip'},
+                     title: 'leave empty for default',
+                     wrapper: {class: 'col-sm-6'} %>
+
+  <%= c.number_field :price, label: 'Price',
+                     data: {toggle: 'tooltip'},
+                     title: 'leave empty for default price',
+                     wrapper: {class: 'col-sm-6'} %>
   <%= c.text_field :comment, label: 'Comment' %>
 <% end %>
+<hr>
+
 <script>
     $('.collapse').collapse();
     $('.selectpicker').selectpicker();
+    $("input").tooltip()
 </script>
 
