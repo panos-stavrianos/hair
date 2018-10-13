@@ -108,7 +108,7 @@ Rails.application.configure do
   #devise
   config.action_mailer.default_url_options = {:host => 'hairnflair.herokuapp.com'}
 
-  config.time_zone = 'Athens' # Your local time zone
+  config.time_zone = 'Europe/Athens' # Your local time zone
   config.active_record.default_timezone = :local
   config.active_record.time_zone_aware_attributes = false
 end

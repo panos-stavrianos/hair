@@ -78,7 +78,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {host: 'localhost', port: 3000}
 
 
-  config.time_zone = 'Athens' # Your local time zone
+  config.time_zone = 'Europe/Athens' # Your local time zone
   config.active_record.default_timezone = :local
   config.active_record.time_zone_aware_attributes = false
 end
