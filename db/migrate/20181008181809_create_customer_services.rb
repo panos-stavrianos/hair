@@ -5,7 +5,7 @@ class CreateCustomerServices < ActiveRecord::Migration[5.2]
       t.belongs_to :service, index: true
       t.belongs_to :user, index: true
       t.integer :amount
-      t.string :price
+      t.float :price
       t.string :comment
       t.timestamps
     end

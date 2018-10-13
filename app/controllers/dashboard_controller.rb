@@ -38,6 +38,15 @@ class DashboardController < ApplicationController
     redirect_to dashboard_index_path
   end
 
+  def destroy_customer_product
+    @record = CustomerProduct.find(params[:id]).destroy
+    redirect_to dashboard_index_path
+  end
+
+  def destroy_customer_service
+    @record = CustomerService.find(params[:id]).destroy
+    redirect_to dashboard_index_path
+  end
 
   def p_params
     params.permit(:customer_id,

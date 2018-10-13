@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     get :autocomplete_product_name, :on => :collection
   end
   post 'dashboard' => 'dashboard#render_product_partial_form'
+  delete 'customer_product/:id(.:format)' => 'dashboard#destroy_customer_product', as: 'destroy_customer_product'
+  delete 'customer_service/:id(.:format)' => 'dashboard#destroy_customer_service', as: 'destroy_customer_service'
 
   resources :customers
   resources :services

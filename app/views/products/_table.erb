@@ -15,8 +15,8 @@
       <tr>
         <%= row(record.name) %>
         <%= row(record.description) %>
-        <%= row(record.price) %>
-        <%= edit_row(edit_product_path(record)) %>
+        <%= row(record.price_in_euro) %>
+        <%= row_with_link(edit_product_path(record)) %>
         <%= delete_row(record) %>
       </tr>
     <% } %>

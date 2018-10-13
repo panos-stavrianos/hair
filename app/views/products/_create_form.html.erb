@@ -7,7 +7,9 @@
     <%= bootstrap_form_for :product, url: {controller: 'products', action: 'create'} do |f| %>
       <%= f.text_field :name, label: 'Name' %>
       <%= f.text_area :description, label: 'Description' %>
-      <%= f.number_field :price, label: 'Price' %>
+      <%= f.number_field :price, label: 'Price',
+                         class: :text_field,
+                         step: :any %>
       <%= f.form_group do %>
         <%= f.primary 'Create' %>
       <% end %>

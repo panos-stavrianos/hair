@@ -1,7 +1,7 @@
 class Service < ApplicationRecord
   belongs_to :user
-  has_many :customer_services
-  has_many :customers, through: :customer_services
+  has_many :customer_services, :dependent => :restrict_with_error
+  has_many :customers, through: :customer_services, :dependent => :restrict_with_error
   scope :by_user, ->(current_user) {where(user: current_user).order(name: :desc)}
 
   def create_with_user(current_user)
@@ -9,7 +9,11 @@ class Service < ApplicationRecord
     save
   end
 
+  def price_in_euro
+    "#{price}€"
+  end
+
   def to_s
-    "#{name} - #{description} - #{price} €"
+    "#{name} - #{description} - #{price_in_euro}"
   end
 end

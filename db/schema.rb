@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2018_10_08_181827) do
     t.bigint "product_id"
     t.bigint "user_id"
     t.integer "amount"
-    t.string "price"
+    t.float "price"
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2018_10_08_181827) do
     t.bigint "service_id"
     t.bigint "user_id"
     t.integer "amount"
-    t.string "price"
+    t.float "price"
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2018_10_08_181827) do
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "price"
+    t.float "price"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2018_10_08_181827) do
   create_table "services", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.string "price"
+    t.float "price"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
