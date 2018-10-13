@@ -1,5 +1,6 @@
 <%= form.fields_for 'customer_products[]', CustomerProduct.new do |c| %>
-  <%= c.select(:product_id, @products.collect {|p| [p, p.id]}, {include_blank: true}, {class: 'selectpicker', 'data-live-search' => 'true'}) %>
+  <%= c.select(:product_id, @products.collect {|p| [p, p.id]}, {include_blank: true},
+               {class: 'selectpicker', 'data-live-search' => 'true'}) %>
   <%= c.number_field :amount, label: 'Amount',
                      data: {toggle: 'tooltip'},
                      title: 'leave empty for one',
