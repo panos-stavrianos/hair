@@ -14,6 +14,10 @@ class Service < ApplicationRecord
   end
 
   def to_s
-    "#{name} - #{description} - #{price_in_euro}"
+    [name, description, price_in_euro].reject(&:blank?).join(" - ")
+  end
+
+  def to_s_name_description
+    [name, description].reject(&:blank?).join(" - ")
   end
 end

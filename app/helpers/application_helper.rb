@@ -23,4 +23,5 @@ module ApplicationHelper
   def icon(icon_class)
     "<span class='#{icon_class}'></span>"
   end
+
 end

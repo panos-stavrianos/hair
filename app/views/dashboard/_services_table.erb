@@ -20,7 +20,7 @@
       <% @customer_services.each {|record| %>
         <tr>
           <%= row(record.customer.name) %>
-          <%= row("#{record.service.name} - #{record.service.description}") %>
+          <%= row(record.service.to_s_name_description) %>
           <%= row_with_tooltip(record.amount_price,
                                record.price_tooltip,
                                "data-sort='#{record.total_paid}'") %>

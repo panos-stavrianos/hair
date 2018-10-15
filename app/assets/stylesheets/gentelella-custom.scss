@@ -1,3 +1,6 @@
+:root {
+  --left_menu_width: 180px;
+}
 
 html, body {
 
@@ -403,7 +406,7 @@ html, body {
 
 .nav-md .container.body .col-md-3.left_col {
   min-height: 100%;
-  width: 230px;
+  width: var(--left_menu_width);
   padding: 0;
   position: absolute;
   display: -ms-flexbox;
@@ -422,11 +425,11 @@ body .container.body .right_col {
 
 .nav-md .container.body .right_col {
   padding: 10px 20px 0;
-  margin-left: 230px
+  margin-left: var(--left_menu_width)
 }
 
 .nav_title {
-  width: 230px;
+  width: var(--left_menu_width);
   float: left;
   background: #2A3F54;
   border-radius: 0;
@@ -596,7 +599,7 @@ body {
 
 .main_container .top_nav {
   display: block;
-  margin-left: 230px
+  margin-left: var(--left_menu_width)
 }
 
 .no-padding {
@@ -974,13 +977,11 @@ a:focus {
   color: #ECF0F1 !important;
   line-height: 59px;
   display: block;
-  height: 75px;
   margin: 0;
   border-bottom: 1px solid;
 }
 
 .img-circle.site_img {
-  height: 60px;
   margin-left: 5%;
   margin-top: 5px;
   border: 4px solid rgba(255, 255, 255, 0.71);
@@ -992,14 +993,14 @@ a:focus {
 }
 
 .img-horizontal.site_img {
-  height: 50px;
   margin-top: 5px;
-  padding: 2px
+  padding: 2px;
+  width: inherit;
 }
 
 .nav-sm .img-horizontal.site_img {
   border: 0;
-  height: 17px;
+  width: inherit;
 }
 
 .site_title:hover,
@@ -1635,7 +1636,6 @@ table.jambo_table tbody tr.selected td {
 }
 
 .dataTables_filter {
-  width: 50%;
   float: right;
   text-align: right
 }
@@ -2036,7 +2036,7 @@ span.right {
   display: block;
   padding: 5px 0 0 0;
   position: fixed;
-  width: 230px;
+  width: var(--left_menu_width);
   background: #2A3F54;
   z-index: 999;
 }
@@ -2072,7 +2072,7 @@ span.right {
 
 @media (min-width: 992px) {
   footer {
-    margin-left: 230px
+    margin-left: var(--left_menu_width)
   }
 }
 
