@@ -76,6 +76,9 @@ gem 'paperclip', '~> 6.0.0'
 
 gem 'bootstrap_form', '>= 4.0.0.alpha1'
 
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+
 # application.js    => //= require bootstrap-select
 # application.scss  => @import "bootstrap-select";
 #                     @import "bootstrap/alerts";

@@ -50,8 +50,8 @@ class DashboardController < ApplicationController
 
   def p_params
     params.permit(:customer_id,
-                  {:customer_products => [:product_id, :amount, :price, :comment]},
-                  {:customer_services => [:service_id, :amount, :price, :comment]})
+                  {:customer_products => [:product_id, :amount, :price, :comment, :created_at]},
+                  {:customer_services => [:service_id, :amount, :price, :comment, :created_at]})
   end
 
 end

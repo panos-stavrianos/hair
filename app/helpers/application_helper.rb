@@ -24,4 +24,20 @@ module ApplicationHelper
     "<span class='#{icon_class}'></span>"
   end
 
+  def datepicker_input(form, field)
+
+
+    form.form_group :terms do
+
+
+      content_tag :div, class: 'input-group date', id: 'sasa' do
+
+        (form.datetime_field_without_bootstrap(field, {class: 'form-control'})) +
+            (content_tag :span, class: 'input-group-addon' do
+              content_tag :span, '', class: 'glyphicon glyphicon-calendar'
+            end)
+      end
+    end
+  end
 end
+
