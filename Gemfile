@@ -27,26 +27,17 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'capistrano-rails', group: :development
 #
 #
-gem 'figaro'
-gem 'bootsnap', '>= 1.1.0', require: false
-gem 'jquery-rails'
-gem 'gentelella-rails'
-gem 'devise'
-gem 'paperclip', '~> 4.1'
-gem 'cancan'
-gem 'capistrano-rails'
-gem 'bootstrap_form', '>= 4.0.0.alpha1'
-gem 'formtastic', '~> 3.0'
-gem 'simple_form'
-gem 'bootstrap-select-rails'
-gem 'nested_form_fields'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -61,6 +52,32 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+##Custom
+# bundle exec figaro install
+gem 'figaro'
+
+gem 'jquery-rails'
+
+# rails g gentelella:install
+gem 'gentelella-rails'
+
+gem 'simple_form'
+# rails generate devise:install
+# config/environments/development.rb => config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+# rails generate devise User
+# ApplicationController => before_action :authenticate_user!
+gem 'devise'
+
+#Google it!
+gem 'paperclip', '~> 6.0.0'
+
+gem 'bootstrap_form', '>= 4.0.0.alpha1'
+
+# application.js    => //= require bootstrap-select
+# application.scss  => @import "bootstrap-select";
+#                     @import "bootstrap/alerts";
+#                     @import "bootstrap/dropdowns";
+gem 'bootstrap-select-rails'

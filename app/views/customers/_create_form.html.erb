@@ -4,7 +4,7 @@
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
-    <%= bootstrap_form_for :record, url: {controller: 'customers', action: 'create'} do |f| %>
+    <%= bootstrap_form_for :customer, url: {controller: 'customers', action: 'create'} do |f| %>
       <%= f.text_field :name, label: 'Name' %>
       <%= f.phone_field :phone_1, label: 'Phone 1' %>
       <%= f.phone_field :phone_2, label: 'Phone 2' %>
