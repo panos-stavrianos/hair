@@ -6,6 +6,7 @@
   <div class="x_content">
     <%= bootstrap_form_for :customer, url: {controller: 'customers', action: 'create'} do |f| %>
       <%= f.text_field :name, label: 'Name' %>
+      <%= f.select :sex, [['Γυναίκα', true], ['Άνδρας', false]], {label: 'Επιλέξτε φύλο:'}, {class: 'selectpicker'} %>
       <%= f.phone_field :phone_1, label: 'Phone 1' %>
       <%= f.phone_field :phone_2, label: 'Phone 2' %>
       <%= f.text_field :comment, label: 'Comment' %>
@@ -16,5 +17,8 @@
   </div>
 </div>
 
+<script>
+    $('.selectpicker').selectpicker();
+</script>
 
 

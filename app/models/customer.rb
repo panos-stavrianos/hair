@@ -18,4 +18,8 @@ class Customer < ApplicationRecord
   def to_s
     "#{name}"
   end
+
+  def sex_to_s
+    sex ? "Γυναίκα" : "'Ανδρας"
+  end
 end

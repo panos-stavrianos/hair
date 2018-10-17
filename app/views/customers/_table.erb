@@ -4,6 +4,7 @@
       <thead>
       <tr>
         <th>Name</th>
+        <th>Φύλο</th>
         <th>Phone 1</th>
         <th>Phone 2</th>
         <th>Comment</th>
@@ -15,6 +16,7 @@
       <% @records.each {|record| %>
         <tr>
           <%= row(record.name) %>
+          <%= row(record.sex_to_s) %>
           <%= row(record.phone_1) %>
           <%= row(record.phone_2) %>
           <%= row(record.comment) %>
