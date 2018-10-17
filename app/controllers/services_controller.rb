@@ -9,7 +9,7 @@ class ServicesController < ApplicationController
   end
 
   def edit
-    @records = Service.all
+    @records = Service.by_user(current_user)
     @record = Service.find(params[:id])
   end
 

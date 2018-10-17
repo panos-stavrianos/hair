@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @records = Product.all
+    @records = Product.by_user(current_user)
     @record = Product.find(params[:id])
   end
 

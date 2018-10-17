@@ -9,7 +9,7 @@ class CustomersController < ApplicationController
   end
 
   def edit
-    @records = Customer.all
+    @records = Customer.by_user(current_user)
     @record = Customer.find(params[:id])
   end
 
