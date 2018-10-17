@@ -3,14 +3,14 @@
     <section class="login_content">
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <h1>Login Form</h1>
+        <h1>Συνδεθείτε</h1>
 
         <div class="field">
           <%= f.email_field :email, autofocus: true, class: 'form-control', autocomplete: 'email', placeholder: 'Email' %>
         </div>
 
         <div class="field">
-          <%= f.password_field :password, autofocus: true, class: 'form-control', autocomplete: 'current-password', placeholder: 'Password' %>
+          <%= f.password_field :password, autofocus: true, class: 'form-control', autocomplete: 'current-password', placeholder: 'Κωδικός' %>
         </div>
 
         <% if devise_mapping.rememberable? -%>
@@ -20,15 +20,13 @@
           </div>
         <% end -%>
 
-        <%= f.submit 'Log in', class: 'btn btn-default submit' %>
-
-
+        <%= f.submit 'Σύνδεση', class: 'btn btn-default submit' %>
       <% end %>
       <div class="clearfix"></div>
       <div class="separator">
 
-        <p class="change_link">New to site?
-          <%= link_to "Sign up", new_registration_path(resource_name) %><br/>
+        <p class="change_link">Δεν έχετε λογαριασμό;
+          <%= link_to 'Εγγραφή', new_registration_path(resource_name) %><br/>
         </p>
       </div>
 

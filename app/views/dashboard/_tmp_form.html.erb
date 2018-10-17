@@ -1,34 +1,77 @@
-<div class="x_panel">
-  <div class="x_title">
-    <h2 id="dd">Add Product/Service</h2>
-    <div class="clearfix"></div>
-  </div>
-  <button id="aa">Add</button>
-  <div class="x_content">
+Δημιουργία
+Ενημέρωση
+Διαγραφή
+Προσθήκη
+Επιλέξτε
+Πίσω
 
-    <% i = 0 %>
+Πελάτη
+Πελάτης
+Πελάτες
 
-    <%= bootstrap_form_tag url: dashboard_index_path do |form| %>
-      <%= form.select :record, @customers, {label: 'Select customer:'}, {class: 'selectpicker ', 'data-live-search' => 'true'} %>
+Προϊόν
+Προϊόντα
+Προϊόντων
+Προϊόντος
 
-      <div id="aas">
-        <%= render partial: 'dashboard/customer_form', locals: {fai: ++i, form: form} %>
-      </div>
-
-      <script>
-          $('#aa').click(function () {
-              $('#aas').append("<%= escape_javascript (render partial: 'dashboard/customer_form', locals: {fai: ++i,form: form} ) %>");
-          })
-      </script>
-
-      <div class="actions">
-        <%= submit_tag %>
-      </div>
-    <% end %>
+Υπηρεσίας
+Υπηρεσία
+Υπηρεσιών
+Υπηρεσίες
 
 
-  </div>
-</div>
+Όνομα
+Τηλέφωνο
+Σχόλιο
+Περιγραφή
+Τιμή
+Ποσότητα
+Ημ/Ώρα
+
+αφήστε κενό για ποσότητα ίση με ένα
+αφήστε κενό για την προκαθορισμένη τιμή
+Σύνολο
+
+Δεν έχει επιλεγεί κάποιο
+
+Ρυθμίσεις
+Αποσύνδεση
+
+
+Αρχική σελίδα
+Προφίλ
+
+Επιβεβαίωση του λογαριασμού
+Αλλαγή κωδικόύ
+
+
+
+
+
+Όνομα χρήστη
+Κωδικός
+Επιβεβαίωση κωδικού
+Τωρινός κωδικός
+Νέος κωδικός
+Εγγραφή
+Σύνδεση
+Συνδεθείτε στον λογαριασμό σας
+Δημιουργία λογαριασμού
+
+Δεν έχετε λογαριασμό
+
+
+
+χαρακτήρες το ελάχιστο
+
+
+( χρειαζόμαστε τον τωρινό σας κωδικό για να επιβεβαιώσουμε τις αλλαγές )
+
+
+
+
+
+
 
 
 

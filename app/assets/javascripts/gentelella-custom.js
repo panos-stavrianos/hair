@@ -147,6 +147,7 @@ $(document).on('turbolinks:load', function () {
             });
         }
     }
+
 // /Sidebar
 
     var randNum = function () {
@@ -626,6 +627,7 @@ $(document).on('turbolinks:load', function () {
         });
 
     }
+
     function init_JQVmap() {
 
         //console.log('check init_JQVmap [' + typeof (VectorCanvas) + '][' + typeof (jQuery.fn.vectorMap) + ']' );
@@ -671,6 +673,7 @@ $(document).on('turbolinks:load', function () {
         }
 
     }
+
     function init_skycons() {
 
         if (typeof (Skycons) === 'undefined') {
@@ -935,6 +938,7 @@ $(document).on('turbolinks:load', function () {
 
 
     }
+
     /* AUTOCOMPLETE */
 
     function init_autocomplete() {
@@ -1225,6 +1229,7 @@ $(document).on('turbolinks:load', function () {
         });
 
     }
+
     /* AUTOSIZE */
 
     function init_autosize() {
@@ -1236,6 +1241,7 @@ $(document).on('turbolinks:load', function () {
         }
 
     }
+
     /* PARSLEY */
 
     function init_parsley() {
@@ -1289,6 +1295,7 @@ $(document).on('turbolinks:load', function () {
         }
 
     }
+
     /* INPUTS */
 
     function onAddTag(tag) {
@@ -1315,6 +1322,7 @@ $(document).on('turbolinks:load', function () {
         }
 
     }
+
     /* SELECT2 */
 
     function init_select2() {
@@ -1336,6 +1344,7 @@ $(document).on('turbolinks:load', function () {
         });
 
     }
+
     /* WYSIWYG EDITOR */
 
     function init_wysiwyg() {
@@ -1411,6 +1420,7 @@ $(document).on('turbolinks:load', function () {
         prettyPrint();
 
     }
+
     /* CROPPER */
 
     function init_cropper() {
@@ -1645,6 +1655,7 @@ $(document).on('turbolinks:load', function () {
 
 
     }
+
     /* CROPPER --- end */
 
     /* KNOB */
@@ -1754,6 +1765,7 @@ $(document).on('turbolinks:load', function () {
         });
 
     }
+
     /* INPUT MASK */
 
     function init_InputMask() {
@@ -1766,6 +1778,7 @@ $(document).on('turbolinks:load', function () {
         $(":input").inputmask();
 
     }
+
     /* COLOR PICKER */
 
     function init_ColorPicker() {
@@ -1790,6 +1803,7 @@ $(document).on('turbolinks:load', function () {
         $('.demo-auto').colorpicker();
 
     }
+
     /* ION RANGE SLIDER */
 
     function init_IonRangeSlider() {
@@ -1861,6 +1875,7 @@ $(document).on('turbolinks:load', function () {
         });
 
     }
+
     /* DATERANGEPICKER */
 
     function init_daterangepicker() {
@@ -2099,6 +2114,7 @@ $(document).on('turbolinks:load', function () {
         $('.buttonFinish').addClass('btn btn-default');
 
     }
+
     /* VALIDATOR */
 
     function init_validator() {
@@ -2137,6 +2153,7 @@ $(document).on('turbolinks:load', function () {
         });
 
     }
+
     /* PNotify */
 
     function init_PNotify() {
@@ -2169,6 +2186,7 @@ $(document).on('turbolinks:load', function () {
         });
 
     }
+
     /* CUSTOM NOTIFICATION */
 
     function init_CustomNotification() {
@@ -2227,6 +2245,7 @@ $(document).on('turbolinks:load', function () {
         });
 
     }
+
     /* EASYPIECHART */
 
     function init_EasyPieChart() {
@@ -2287,6 +2306,7 @@ $(document).on('turbolinks:load', function () {
         });
 
     }
+
     function init_charts() {
 
         console.log('run_charts  typeof [' + typeof (Chart) + ']');
@@ -2705,6 +2725,7 @@ $(document).on('turbolinks:load', function () {
         });
 
     }
+
     /* CALENDAR */
 
     function init_calendar() {
@@ -2809,6 +2830,7 @@ $(document).on('turbolinks:load', function () {
         });
 
     }
+
     /* DATA TABLES */
 
     function init_DataTables() {
@@ -2846,7 +2868,11 @@ $(document).on('turbolinks:load', function () {
                             className: "btn-sm"
                         },
                     ],
-                    responsive: true
+                    responsive: true,
+                    "language": {
+                        "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Greek.json"
+                    }
+
                 });
             }
         };
@@ -2863,17 +2889,27 @@ $(document).on('turbolinks:load', function () {
         $('#datatable').dataTable();
 
         $('#datatable-keytable').DataTable({
-            keys: true
+            keys: true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Greek.json"
+            }
         });
 
-        $('#datatable-responsive').DataTable();
+        $('#datatable-responsive').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Greek.json"
+            }
+        });
 
         $('#datatable-scroller').DataTable({
             ajax: "js/datatables/json/scroller-demo.json",
             deferRender: true,
             scrollY: 380,
             scrollCollapse: true,
-            scroller: true
+            scroller: true,
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Greek.json"
+            }
         });
 
         $('#datatable-fixed-header').DataTable({
@@ -2897,6 +2933,7 @@ $(document).on('turbolinks:load', function () {
         TableManageButtons.init();
 
     }
+
     /* CHART - MORRIS  */
 
     function init_morris_charts() {
@@ -3055,6 +3092,7 @@ $(document).on('turbolinks:load', function () {
         }
 
     }
+
     /* ECHRTS */
 
 

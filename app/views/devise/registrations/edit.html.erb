@@ -2,7 +2,7 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Edit User</h2>
+        <h2>Ενημέρωση Προφίλ</h2>
         <div class="clearfix"></div>
       </div>
       <br class="x_content">
@@ -11,7 +11,6 @@
         <%= devise_error_messages! %>
         <div class="form-group">
           <div class="control-label col-md-3 col-sm-3 col-xs-12">
-
             <%= image_tag(current_user.avatar.url(:medium), class: "upload_avatar") %>
           </div>
           <div class="col-md-6 col-sm-6 col-xs-12">
@@ -21,7 +20,7 @@
 
 
         <div class="form-group">
-          <%= f.label :username, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+          <%= f.label 'Όνομα χρήστη', class: "control-label col-md-3 col-sm-3 col-xs-12" %>
           <div class="col-md-6 col-sm-6 col-xs-12">
             <%= f.text_field :username, value: current_user.username, class: "form-control col-md-7 col-xs-12" %>
           </div>
@@ -35,8 +34,8 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :current_password, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
-          <i>(we need your current password to confirm your changes)</i>
+          <%= f.label 'Τωρινός κωδικός', class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+          <i style="margin-left: 10px;"> ( χρειαζόμαστε τον τωρινό σας κωδικό για να επιβεβαιώσουμε τις αλλαγές )</i>
           <div class="col-md-6 col-sm-6 col-xs-12">
             <%= f.password_field :current_password, class: "form-control col-md-7 col-xs-12", autocomplete: "current-password" %>
           </div>
@@ -44,9 +43,9 @@
 
         </br>
         <div class="form-group">
-          <%= f.label :new_password, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+          <%= f.label 'Νέος κωδικός', class: "control-label col-md-3 col-sm-3 col-xs-12" %>
           <% if @minimum_password_length %>
-            <i><%= @minimum_password_length %> characters minimum</i>
+            <i><%= @minimum_password_length %> χαρακτήρες το ελάχιστο</i>
           <% end %>
           <div class="col-md-6 col-sm-6 col-xs-12">
             <%= f.password_field :password, autocomplete: :off, class: "form-control col-md-7 col-xs-12" %>
@@ -55,7 +54,7 @@
 
 
         <div class="form-group">
-          <%= f.label :password_confirmation, class: "control-label col-md-3 col-sm-3 col-xs-12" %>
+          <%= f.label 'Επιβεβαίωση κωδικού', class: "control-label col-md-3 col-sm-3 col-xs-12" %>
           <div class="col-md-6 col-sm-6 col-xs-12">
             <%= f.password_field :password_confirmation, class: "form-control col-md-7 col-xs-12" %>
           </div>
@@ -65,9 +64,8 @@
         <div class="ln_solid"></div>
         <div class="form-group">
           <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-            <%= f.submit "Update", class: "btn btn-success" %>
-            <%= link_to "Back", :back, class: "btn btn-primary" %>
-
+            <%= f.submit "Ενημέρωση", class: "btn btn-success" %>
+            <%= link_to "Πίσω", :back, class: "btn btn-primary" %>
           </div>
         </div>
       <% end %>

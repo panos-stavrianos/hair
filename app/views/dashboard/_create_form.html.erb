@@ -1,13 +1,13 @@
 <div class="x_panel">
   <div class="x_title">
-    <h2 id="dd">Add Products and Services</h2>
+    <h2 id="dd">Προσθήκη Υπηρεσιών και Προϊόντων</h2>
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
 
-
     <%= bootstrap_form_tag url: dashboard_index_path do |form| %>
-      <%= form.select(:customer_id, @customers.collect {|p| [p.name, p.id]}, {include_blank: true},
+      <%= form.select(:customer_id, @customers.pluck(:name, :id),
+                      {label: 'Επιλέξτε Πελάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
                       {class: 'selectpicker form-control', 'data-live-search' => 'true'}) %>
       <hr>
       <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
@@ -18,7 +18,7 @@
                 <span class="glyphicon glyphicon-plus"></span>
               </div>
             </div>
-            <h4 class="panel-title">Services</h4>
+            <h4 class="panel-title">Υπηρεσίες</h4>
           </a>
           <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
             <div class="panel-body">
@@ -33,7 +33,7 @@
                 <span class="glyphicon glyphicon-plus"></span>
               </div>
             </div>
-            <h4 class="panel-title">Products</h4>
+            <h4 class="panel-title">Προϊόντα</h4>
           </a>
           <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
             <div class="panel-body">
@@ -43,9 +43,7 @@
         </div>
       </div>
 
-
       <script>
-
           $('#add_product').click(function (event) {
               event.stopPropagation();
               $('#new_products').append("<%= escape_javascript (render partial: 'dashboard/product_form', locals: {form: form} ) %>");
@@ -55,14 +53,12 @@
               $('#new_services').append("<%= escape_javascript (render partial: 'dashboard/service_form', locals: {form: form} ) %>");
           });
           $('.selectpicker').selectpicker();
-
-
       </script>
 
-      <%= form.submit class: "btn btn-success" %>
+      <%= form.form_group do %>
+        <%= form.primary 'Προσθήκη' %>
+      <% end %>
     <% end %>
-
-
   </div>
 </div>
 

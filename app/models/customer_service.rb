@@ -19,7 +19,7 @@ class CustomerService < ApplicationRecord
   end
 
   def price_tooltip
-    "default price: #{service.price_in_euro}"
+    "προκαθορισμένη τιμή: #{service.price_in_euro}"
   end
 
   def total_paid
@@ -31,7 +31,7 @@ class CustomerService < ApplicationRecord
   end
 
   def total_paid_s
-    is_amount_one ? '' : "(Total: #{total_paid}€)"
+    is_amount_one ? '' : "(Σύνολο: #{total_paid}€)"
   end
 
   def actual_price

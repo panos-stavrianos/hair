@@ -3,11 +3,11 @@
   <table id="datatable-services" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
     <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <th>Όνομα</th>
+      <th>Περιγραφή</th>
+      <th>Τιμή</th>
+      <th>Ενημέρωση</th>
+      <th>Διαγραφή</th>
     </tr>
     </thead>
     <tbody>
@@ -29,6 +29,9 @@
     $('#datatable-services').DataTable({
         "columnDefs": [
             {"width": "50px", "targets": [3, 4], "orderable": false, "className": "text-center"}
-        ]
+        ],
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Greek.json"
+        }
     });
 </script>

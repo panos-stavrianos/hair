@@ -1,18 +1,19 @@
 <%= form.fields_for 'customer_products[]', CustomerProduct.new do |c| %>
-  <%= c.select(:product_id, @products.collect {|p| [p, p.id]}, {include_blank: true},
+  <%= c.select(:product_id, @products.collect {|p| [p, p.id]},
+               {label: 'Επιλέξτε Προϊόν', :prompt => 'Δεν έχει επιλεγεί κάποιο'},
                {class: 'selectpicker', 'data-live-search' => 'true'}) %>
   <%= datepicker_input(c, :created_at) %>
-  <%= c.number_field :amount, label: 'Amount',
+  <%= c.number_field :amount, label: 'Ποσότητα',
                      data: {toggle: 'tooltip'},
-                     title: 'leave empty for one',
+                     title: 'αφήστε κενό για ποσότητα ίση με ένα',
                      wrapper: {class: 'col-sm-6'} %>
-  <%= c.number_field :price, label: 'Price',
+  <%= c.number_field :price, label: 'Τιμή',
                      class: :text_field,
                      step: :any,
                      data: {toggle: 'tooltip'},
-                     title: 'leave empty for default price',
+                     title: 'αφήστε κενό για την προκαθορισμένη τιμή',
                      wrapper: {class: 'col-sm-6'} %>
-  <%= c.text_field :comment, label: 'Comment' %>
+  <%= c.text_field :comment, label: 'Σχόλιο' %>
 <% end %>
 <hr>
 

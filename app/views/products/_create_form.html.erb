@@ -1,17 +1,17 @@
 <div class="x_panel">
   <div class="x_title">
-    <h2>Create Product</h2>
+    <h2>Δημιουργία Προϊόντος</h2>
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
     <%= bootstrap_form_for :product, url: {controller: 'products', action: 'create'} do |f| %>
-      <%= f.text_field :name, label: 'Name' %>
-      <%= f.text_area :description, label: 'Description' %>
-      <%= f.number_field :price, label: 'Price',
+      <%= f.text_field :name, label: 'Όνομα' %>
+      <%= f.text_area :description, label: 'Περιγραφή' %>
+      <%= f.number_field :price, label: 'Τιμή',
                          class: :text_field,
                          step: :any %>
       <%= f.form_group do %>
-        <%= f.primary 'Create' %>
+        <%= f.primary 'Δημιουργία' %>
       <% end %>
     <% end %>
   </div>
