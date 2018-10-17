@@ -5,9 +5,9 @@
   </div>
   <div class="x_content">
     <%= bootstrap_form_for @record, url: {controller: 'products', action: 'update'} do |f| %>
-      <%= f.text_field :name, label: 'Name' %>
-      <%= f.text_area :description, label: 'Description' %>
-      <%= f.number_field :price, label: 'Price',
+      <%= f.text_field :name, label: 'Όνομα' %>
+      <%= f.text_area :description, label: 'Περιγραφή' %>
+      <%= f.number_field :price, label: 'Τιμή',
                          class: :text_field,
                          step: :any %>
       <%= f.form_group do %>

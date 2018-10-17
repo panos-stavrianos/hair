@@ -1,0 +1,28 @@
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Ενημέρωση Έξοδου</h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <%= bootstrap_form_for @record, url: {controller: 'expenses', action: 'update'} do |f| %>
+      <%= f.text_field :name, label: 'Καταχώρηση' %>
+      <%= f.number_field :price, label: 'Τιμή',
+                         class: :text_field,
+                         step: :any %>
+      <%= datepicker_input(f, :created_at) %>
+
+      <%= f.form_group do %>
+        <%= f.primary 'Ενημέρωση' %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<script>
+    $("input").tooltip();
+    $('.input-group.date').datetimepicker({
+        format: 'DD/M/YYYY HH:mm',
+        locale: 'el',
+        allowInputToggle: true,
+        showClose: true
+    });
+</script>
