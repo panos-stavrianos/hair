@@ -62,18 +62,22 @@ class DashboardController < ApplicationController
     this_week_customers = Customer.by_user(current_user).where(created_at: 1.weeks.ago..Time.now).count
 
     this_week_products = CustomerProduct.by_user(current_user).where(created_at: 1.weeks.ago..Time.now).count
-    this_week_products_income = CustomerProduct.by_user(current_user).where(created_at: 1.weeks.ago..Time.now).sum(:price)
+    this_week_products_income = CustomerProduct.by_user(current_user).where(created_at: 1.weeks.ago..Time.now)
+                                    .sum('customer_products.price * customer_products.amount')
     last_week_products = CustomerProduct.by_user(current_user).where(created_at: 2.weeks.ago..1.weeks.ago).count
-    last_week_products_income = CustomerProduct.by_user(current_user).where(created_at: 2.weeks.ago..1.weeks.ago).sum(:price)
+    last_week_products_income = CustomerProduct.by_user(current_user).where(created_at: 2.weeks.ago..1.weeks.ago)
+                                    .sum('customer_products.price * customer_products.amount')
     if last_week_products == 0
       last_week_products = 1
     end
     last_week_percent_product = (this_week_products - last_week_products) * 100 / last_week_products
 
     this_week_services = CustomerService.by_user(current_user).where(created_at: 1.weeks.ago..Time.now).count
-    this_week_services_income = CustomerService.by_user(current_user).where(created_at: 1.weeks.ago..Time.now).sum(:price)
+    this_week_services_income = CustomerService.by_user(current_user).where(created_at: 1.weeks.ago..Time.now)
+                                    .sum('customer_services.price * customer_services.amount')
     last_week_services = CustomerService.by_user(current_user).where(created_at: 2.weeks.ago..1.weeks.ago).count
-    last_week_services_income = CustomerService.by_user(current_user).where(created_at: 2.weeks.ago..1.weeks.ago).sum(:price)
+    last_week_services_income = CustomerService.by_user(current_user).where(created_at: 2.weeks.ago..1.weeks.ago)
+                                    .sum('customer_services.price * customer_services.amount')
     if last_week_services == 0
       last_week_services = 1
     end
