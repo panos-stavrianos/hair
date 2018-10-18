@@ -1,0 +1,34 @@
+<!-- top tiles -->
+<div class="row tile_count">
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+    <span class="count_top"><i class="fa fa-user"></i> Συνολικοί Πελάτες</span>
+    <div class="count blue"><%= @tiles[:total_customers] %></div>
+    <span class="count_bottom"><i class="green"><%= @tiles[:this_week_customers] %> </i> αυτή την εβδομάδα</span>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+    <span class="count_top"><i class="glyphicon glyphicon-scissors"></i> Υπηρεσίες εβδομάδας</span>
+    <div class="count pink"><%= @tiles[:this_week_services] %></div>
+    <%= percent_tile(@tiles[:last_week_percent_service], 'απο την προηγούμενη εβδομάδα') %>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+    <span class="count_top"><i class="glyphicon glyphicon-ice-lolly"></i> Προϊόντα εβδομάδας</span>
+    <div class="count pink"><%= @tiles[:this_week_products] %></div>
+    <%= percent_tile(@tiles[:last_week_percent_product], 'απο την προηγούμενη εβδομάδα') %>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+    <span class="count_top"><i class="glyphicon glyphicon-hand-up"></i> Έσοδα εβδομάδας</span>
+    <div class="count aero"><%= @tiles[:this_week_income] %>€</div>
+    <%= percent_tile(@tiles[:last_week_percent_income], 'απο την προηγούμενη εβδομάδα') %>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+    <span class="count_top"><i class="glyphicon glyphicon-hand-down"></i> Έξοδα εβδομάδας</span>
+    <div class="count red"><%= @tiles[:this_week_expenses] %>€</div>
+    <%= percent_tile(@tiles[:last_week_percent_expense], 'απο την προηγούμενη εβδομάδα') %>
+  </div>
+  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+    <span class="count_top"><i class="glyphicon glyphicon-hand-right"></i> Κέρδος εβδομάδας</span>
+    <div class="count green"><%= @tiles[:this_week_profit] %>€</div>
+    <%= percent_tile(@tiles[:last_week_percent_profit], 'απο την προηγούμενη εβδομάδα') %>
+  </div>
+</div>
+<!-- /top tiles -->

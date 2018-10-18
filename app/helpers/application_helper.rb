@@ -45,5 +45,18 @@ module ApplicationHelper
     end
   end
 
+  def percent_tile(value, text)
+    color = value > 0 ? 'green' : 'red'
+    arrow = value > 0 ? 'fa fa-sort-asc' : 'fa fa-sort-desc'
+
+    content_tag :span, class: 'count_bottom' do
+      concat (content_tag :i, class: color do
+        concat content_tag :i, '', class: arrow
+        concat "#{value}% "
+      end)
+      concat text
+    end
+  end
+
 end
 
