@@ -9,6 +9,7 @@
       <tr>
         <th>Όνομα</th>
         <th>Υπηρεσία</th>
+        <th>Συνεργάτης</th>
         <th>Ποσότητα - Τιμή</th>
         <th>Σχόλιο</th>
         <th>Ημ/Ώρα</th>
@@ -21,6 +22,7 @@
         <tr>
           <%= row(record.customer.name) %>
           <%= row(record.service.to_s_name_description) %>
+          <%= row(record.partner.to_s) %>
           <%= row_with_tooltip(record.amount_price,
                                record.price_tooltip,
                                "data-sort='#{record.total_paid}'") %>

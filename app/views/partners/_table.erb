@@ -1,11 +1,11 @@
 <div class="x_panel">
   <div class="x_content">
-    <table id="datatable-services" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+    <table id="datatable-partners" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
       <thead>
       <tr>
         <th>Όνομα</th>
-        <th>Περιγραφή</th>
-        <th>Τιμή</th>
+        <th>Τηλέφωνο</th>
+        <th>Σχόλιο</th>
         <th>Ενεργος</th>
         <th>Ενημέρωση</th>
         <th>Διαγραφή</th>
@@ -15,10 +15,10 @@
       <% @records.each {|record| %>
         <tr>
           <%= row(record.name) %>
-          <%= row(record.description) %>
-          <%= row(record.price_in_euro) %>
-          <%= enabled_row(toggle_enabled_service_path(record), record.enabled) %>
-          <%= edit_row(edit_service_path(record)) %>
+          <%= row(record.phone) %>
+          <%= row(record.comment) %>
+          <%= enabled_row(toggle_enabled_partner_path(record), record.enabled) %>
+          <%= edit_row(edit_partner_path(record)) %>
           <%= delete_row(record) %>
         </tr>
       <% } %>
@@ -28,7 +28,7 @@
 </div>
 
 <script>
-    $('#datatable-services').DataTable({
+    $('#datatable-partners').DataTable({
         "columnDefs": [
             {"width": "50px", "targets": [3, 4, 5], "orderable": false, "className": "text-center"}
         ],

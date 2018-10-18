@@ -20,7 +20,7 @@
           <%= row(record.phone_1) %>
           <%= row(record.phone_2) %>
           <%= row(record.comment) %>
-          <%= row_with_link(edit_customer_path(record)) %>
+          <%= edit_row(edit_customer_path(record)) %>
           <%= delete_row(record) %>
         </tr>
       <% } %>

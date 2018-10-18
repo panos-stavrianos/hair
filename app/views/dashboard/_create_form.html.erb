@@ -8,7 +8,12 @@
     <%= bootstrap_form_tag url: dashboard_index_path do |form| %>
       <%= form.select(:customer_id, @customers.pluck(:name, :id),
                       {label: 'Επιλέξτε Πελάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
-                      {class: 'selectpicker form-control', 'data-live-search' => 'true'}) %>
+                      {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
+      <%= form.select(:partner_id, @partners.pluck(:name, :id),
+                      {label: 'Επιλέξτε Συνεργάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
+                      {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
+
+
       <hr>
       <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel">

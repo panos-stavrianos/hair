@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_224723) do
+ActiveRecord::Schema.define(version: 2018_10_18_140428) do
 
   create_table "customer_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "customer_id"
@@ -35,7 +35,9 @@ ActiveRecord::Schema.define(version: 2018_10_17_224723) do
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "partner_id"
     t.index ["customer_id"], name: "index_customer_services_on_customer_id"
+    t.index ["partner_id"], name: "index_customer_services_on_partner_id"
     t.index ["service_id"], name: "index_customer_services_on_service_id"
     t.index ["user_id"], name: "index_customer_services_on_user_id"
   end
@@ -61,6 +63,17 @@ ActiveRecord::Schema.define(version: 2018_10_17_224723) do
     t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
+  create_table "partners", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "comment"
+    t.boolean "enabled", default: true
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_partners_on_user_id"
+  end
+
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -68,6 +81,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_224723) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "enabled", default: true
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
@@ -78,6 +92,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_224723) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "enabled", default: true
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 

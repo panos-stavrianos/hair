@@ -18,7 +18,7 @@
           <%= row_with_tooltip(record.created_at_s,
                                time_ago_in_words(record.created_at),
                                "data-sort='#{record.created_at}'") %>
-          <%= row_with_link(edit_expense_path(record)) %>
+          <%= edit_row(edit_expense_path(record)) %>
           <%= delete_row(record) %>
         </tr>
       <% } %>

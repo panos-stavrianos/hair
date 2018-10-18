@@ -10,8 +10,24 @@ Rails.application.routes.draw do
   delete 'customer_service/:id(.:format)' => 'dashboard#destroy_customer_service', as: 'destroy_customer_service'
 
   resources :customers
-  resources :services
-  resources :products
   resources :expenses
+
+  resources :services do
+    member do
+      patch :toggle_enabled
+    end
+  end
+
+  resources :products do
+    member do
+      patch :toggle_enabled
+    end
+  end
+
+  resources :partners do
+    member do
+      patch :toggle_enabled
+    end
+  end
 
 end

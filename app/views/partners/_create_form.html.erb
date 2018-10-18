@@ -1,0 +1,23 @@
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Προσθήκη Συνεργάτη</h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <%= bootstrap_form_for :partner, url: {controller: 'partners', action: 'create'} do |f| %>
+      <%= f.text_field :name, label: 'Όνομα' %>
+      <%= f.phone_field :phone, label: 'Τηλέφωνο' %>
+      <%= f.text_field :comment, label: 'Σχόλιο' %>
+      <%= f.check_box :enabled, {label: 'Ενεργός', checked: true} %>
+      <%= f.form_group do %>
+        <%= f.primary 'Προσθήκη' %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<script>
+    $('.selectpicker').selectpicker();
+</script>
+
+

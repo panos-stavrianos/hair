@@ -1,6 +1,7 @@
 class CustomerService < ApplicationRecord
   belongs_to :customer
   belongs_to :service
+  belongs_to :partner
   belongs_to :user
 
   scope :by_user, ->(current_user) {where(user: current_user).order(created_at: :desc)}

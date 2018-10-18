@@ -6,6 +6,7 @@
         <th>Όνομα</th>
         <th>Περιγραφή</th>
         <th>Τιμή</th>
+        <th>Ενεργος</th>
         <th>Ενημέρωση</th>
         <th>Διαγραφή</th>
       </tr>
@@ -16,7 +17,8 @@
           <%= row(record.name) %>
           <%= row(record.description) %>
           <%= row(record.price_in_euro) %>
-          <%= row_with_link(edit_product_path(record)) %>
+          <%= enabled_row(toggle_enabled_product_path(record), record.enabled) %>
+          <%= edit_row(edit_product_path(record)) %>
           <%= delete_row(record) %>
         </tr>
       <% } %>
@@ -28,7 +30,7 @@
 <script>
     $('#datatable-products').DataTable({
         "columnDefs": [
-            {"width": "50px", "targets": [3, 4], "orderable": false, "className": "text-center"}
+            {"width": "50px", "targets": [3, 4, 5], "orderable": false, "className": "text-center"}
         ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Greek.json"

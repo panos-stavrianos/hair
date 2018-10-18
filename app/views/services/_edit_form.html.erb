@@ -10,6 +10,8 @@
       <%= f.number_field :price, label: 'Τιμή',
                          class: :text_field,
                          step: :any %>
+      <%= f.check_box :enabled, {label: 'Ενεργός'} %>
+
       <%= f.form_group do %>
         <%= f.primary 'Ενημέρωση' %>
       <% end %>

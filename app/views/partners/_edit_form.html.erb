@@ -1,20 +1,20 @@
 <div class="x_panel">
   <div class="x_title">
-    <h2>Ενημέρωση Προϊόντος</h2>
+    <h2>Ενημέρωση Πελάτη</h2>
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
-    <%= bootstrap_form_for @record, url: {controller: 'products', action: 'update'} do |f| %>
+    <%= bootstrap_form_for @record, url: {controller: 'partners', action: 'update'} do |f| %>
       <%= f.text_field :name, label: 'Όνομα' %>
-      <%= f.text_area :description, label: 'Περιγραφή' %>
-      <%= f.number_field :price, label: 'Τιμή',
-                         class: :text_field,
-                         step: :any %>
+      <%= f.phone_field :phone, label: 'Τηλέφωνο' %>
+      <%= f.text_field :comment, label: 'Σχόλιο' %>
       <%= f.check_box :enabled, {label: 'Ενεργός'} %>
-
       <%= f.form_group do %>
         <%= f.primary 'Ενημέρωση' %>
       <% end %>
     <% end %>
   </div>
 </div>
+<script>
+    $('.selectpicker').selectpicker();
+</script>

@@ -28,7 +28,13 @@ class ServicesController < ApplicationController
     redirect_to services_path
   end
 
+  def toggle_enabled
+    @record = Service.find(params[:id])
+    @record.toggle!(:enabled)
+    redirect_to services_path
+  end
+
   def service_params
-    params.require(:service).permit(:name, :description, :price)
+    params.require(:service).permit(:name, :description, :enabled, :price)
   end
 end
