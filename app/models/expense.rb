@@ -17,7 +17,7 @@ class Expense < ApplicationRecord
   end
 
   def created_at_s
-    created_at.strftime("%H:%M - %d/%m/%Y")
+    created_at.strftime("%H:%M  %d/%m/%Y")
   end
 end
 
