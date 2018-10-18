@@ -24,6 +24,9 @@ class DashboardController < ApplicationController
             if @record.price.blank?
               @record.price = Product.find(record_params[:product_id]).price
             end
+            if @record.amount.blank?
+              @record.amount = 1
+            end
             @record.customer_id = p_params[:customer_id]
             @record.create_with_user(current_user)
           end
@@ -35,6 +38,9 @@ class DashboardController < ApplicationController
             @record = CustomerService.new(record_params)
             if @record.price.blank?
               @record.price = Service.find(record_params[:service_id]).price
+            end
+            if @record.amount.blank?
+              @record.amount = 1
             end
             @record.partner_id = p_params[:partner_id]
             @record.customer_id = p_params[:customer_id]
