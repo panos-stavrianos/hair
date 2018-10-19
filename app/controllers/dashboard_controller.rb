@@ -96,8 +96,8 @@ class DashboardController < ApplicationController
 
     this_week_income = this_week_products.sum + this_week_services.sum
     last_week_income = last_week_products.sum + last_week_services.sum
-    if last_week_income == 0 ?
-           last_week_income : 1
+    if last_week_income == 0
+      last_week_income = 1
     end
     last_week_percent_income = (this_week_income - last_week_income) * 100 / last_week_income
 
