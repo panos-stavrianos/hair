@@ -2,6 +2,7 @@ class Expense < ApplicationRecord
   belongs_to :user
 
   scope :by_user, ->(current_user) {where(user: current_user).order(name: :desc)}
+  before_save :price_validation
 
   def create_with_user(current_user)
     self.user = current_user if user.nil?
@@ -18,6 +19,12 @@ class Expense < ApplicationRecord
 
   def created_at_s
     created_at.strftime("%H:%M  %d/%m/%Y")
+  end
+
+  def price_validation
+    if price.blank?
+      self.price = 0
+    end
   end
 end
 
