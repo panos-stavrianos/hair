@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_18_140428) do
+ActiveRecord::Schema.define(version: 2018_10_19_020842) do
 
   create_table "customer_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "customer_id"
@@ -123,5 +123,10 @@ ActiveRecord::Schema.define(version: 2018_10_18_140428) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+
+  create_view "tiles", sql_definition: <<-SQL
+      select 'all_customers' AS `inent`,count(0) AS `count`,0 AS `sum`,`customers`.`user_id` AS `user_id` from `customers` group by `customers`.`user_id` union select 'this_week_customers' AS `inent`,count(0) AS `count`,0 AS `sum`,`customers`.`user_id` AS `user_id` from `customers` where (yearweek(`customers`.`created_at`,0) = yearweek(curdate(),0)) group by `customers`.`user_id` union select 'this_week_products' AS `inent`,count(0) AS `count`,sum((`customer_products`.`price` * `customer_products`.`amount`)) AS `sum`,`customer_products`.`user_id` AS `user_id` from `customer_products` where (yearweek(`customer_products`.`created_at`,0) = yearweek(curdate(),0)) group by `customer_products`.`user_id` union select 'last_week_products' AS `inent`,count(0) AS `count`,sum((`customer_products`.`price` * `customer_products`.`amount`)) AS `sum`,`customer_products`.`user_id` AS `user_id` from `customer_products` where (yearweek(`customer_products`.`created_at`,0) = yearweek((curdate() - 7),0)) group by `customer_products`.`user_id` union select 'this_week_services' AS `inent`,count(0) AS `count`,sum((`customer_services`.`price` * `customer_services`.`amount`)) AS `sum`,`customer_services`.`user_id` AS `user_id` from `customer_services` where (yearweek(`customer_services`.`created_at`,0) = yearweek(curdate(),0)) group by `customer_services`.`user_id` union select 'last_week_services' AS `inent`,count(0) AS `count`,sum((`customer_services`.`price` * `customer_services`.`amount`)) AS `sum`,`customer_services`.`user_id` AS `user_id` from `customer_services` where (yearweek(`customer_services`.`created_at`,0) = yearweek((curdate() - 7),0)) group by `customer_services`.`user_id` union select 'this_week_expenses' AS `inent`,count(0) AS `count`,sum(`expenses`.`price`) AS `sum`,`expenses`.`user_id` AS `user_id` from `expenses` where (yearweek(`expenses`.`created_at`,0) = yearweek(curdate(),0)) group by `expenses`.`user_id` union select 'last_week_expenses' AS `inent`,count(0) AS `count`,sum(`expenses`.`price`) AS `sum`,`expenses`.`user_id` AS `user_id` from `expenses` where (yearweek(`expenses`.`created_at`,0) = yearweek((curdate() - 7),0)) group by `expenses`.`user_id`
+  SQL
 
 end

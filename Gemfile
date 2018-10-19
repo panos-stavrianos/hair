@@ -84,3 +84,6 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 #                     @import "bootstrap/alerts";
 #                     @import "bootstrap/dropdowns";
 gem 'bootstrap-select-rails'
+
+#For sql views
+gem 'scenic-mysql_adapter'

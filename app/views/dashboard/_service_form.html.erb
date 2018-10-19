@@ -1,5 +1,5 @@
 <%= form.fields_for 'customer_services[]', CustomerService.new do |c| %>
-  <%= c.select(:service_id, @products.collect {|p| [p, p.id]},
+  <%= c.select(:service_id, @services.collect {|p| [p, p.id]},
                {label: 'Επιλέξτε Υπηρεσία', :prompt => 'Δεν έχει επιλεγεί κάποια'},
                {class: 'selectpicker form-control', 'data-live-search' => 'true'}) %>
   <%= datepicker_input(c, :created_at) %>

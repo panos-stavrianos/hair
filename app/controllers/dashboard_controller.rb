@@ -2,13 +2,13 @@
 class DashboardController < ApplicationController
 
   def index
-    @tiles = load_tiles
+    @tiles = tiles
     @customers = Customer.by_user(current_user)
     @products = Product.by_user(current_user).where(enabled: true)
     @services = Service.by_user(current_user).where(enabled: true)
     @partners = Partner.by_user(current_user).where(enabled: true)
-    @customer_services = CustomerService.preload(:customer, :service, :partner).by_user(current_user)
-    @customer_products = CustomerProduct.preload(:customer, :product).by_user(current_user)
+    @customer_services = CustomerService.eager_load(:customer, :service, :partner).by_user(current_user)
+    @customer_products = CustomerProduct.eager_load(:customer, :product).by_user(current_user)
   end
 
   def render_product_partial_form
@@ -62,62 +62,65 @@ class DashboardController < ApplicationController
     redirect_to dashboard_index_path
   end
 
+  def tiles
+    my_tiles = Tile.by_user(current_user)
 
-  def load_tiles
-    total_customers = Customer.by_user(current_user).count
-    this_week_customers = Customer.by_user(current_user).where(created_at: 1.weeks.ago..Time.now).count
-
-    this_week_products = CustomerProduct.by_user(current_user).where(created_at: 1.weeks.ago..Time.now).count
-    this_week_products_income = CustomerProduct.by_user(current_user).where(created_at: 1.weeks.ago..Time.now)
-                                    .sum('customer_products.price * customer_products.amount')
-    last_week_products = CustomerProduct.by_user(current_user).where(created_at: 2.weeks.ago..1.weeks.ago).count
-    last_week_products_income = CustomerProduct.by_user(current_user).where(created_at: 2.weeks.ago..1.weeks.ago)
-                                    .sum('customer_products.price * customer_products.amount')
-    if last_week_products == 0
-      last_week_products = 1
+    all_customers = my_tiles.find {|x| x[:inent] == 'all_customers'}
+    this_week_customers = my_tiles.find {|x| x[:inent] == 'this_week_customers'}
+    if all_customers.nil?
+      all_customers = Tile.new(count: 0, sum: 0)
     end
-    last_week_percent_product = (this_week_products - last_week_products) * 100 / last_week_products
-
-    this_week_services = CustomerService.by_user(current_user).where(created_at: 1.weeks.ago..Time.now).count
-    this_week_services_income = CustomerService.by_user(current_user).where(created_at: 1.weeks.ago..Time.now)
-                                    .sum('customer_services.price * customer_services.amount')
-    last_week_services = CustomerService.by_user(current_user).where(created_at: 2.weeks.ago..1.weeks.ago).count
-    last_week_services_income = CustomerService.by_user(current_user).where(created_at: 2.weeks.ago..1.weeks.ago)
-                                    .sum('customer_services.price * customer_services.amount')
-    if last_week_services == 0
-      last_week_services = 1
+    if this_week_customers.nil?
+      this_week_customers = Tile.new(count: 0, sum: 0)
     end
-    last_week_percent_service = (this_week_services - last_week_services) * 100 / last_week_services
 
-    this_week_income = this_week_products_income + this_week_services_income
-    last_week_income = last_week_products_income + last_week_services_income
-    if last_week_income == 0
-      last_week_income = 1
+    this_week_products = my_tiles.find {|x| x[:inent] == 'this_week_products'}
+    last_week_products = my_tiles.find {|x| x[:inent] == 'last_week_products'}
+    if this_week_products.nil?
+      this_week_products = Tile.new(count: 0, sum: 0)
     end
+    if last_week_products.nil?
+      last_week_products = Tile.new(count: 1, sum: 0)
+    end
+    last_week_percent_product = (this_week_products.count - last_week_products.count) * 100 / last_week_products.count
+
+    this_week_services = my_tiles.find {|x| x[:inent] == 'this_week_services'}
+    last_week_services = my_tiles.find {|x| x[:inent] == 'last_week_services'}
+    if this_week_services.nil?
+      this_week_services = Tile.new(count: 0, sum: 0)
+    end
+    if last_week_services.nil?
+      last_week_services = Tile.new(count: 1, sum: 0)
+    end
+    last_week_percent_service = (this_week_services.count - last_week_services.count) * 100 / last_week_services.count
+
+    this_week_income = this_week_products.sum + this_week_services.sum
+    last_week_income = last_week_products.sum + last_week_services.sum
     last_week_percent_income = (this_week_income - last_week_income) * 100 / last_week_income
 
-
-    this_week_expenses = Expense.by_user(current_user).where(created_at: 1.weeks.ago..Time.now).sum(:price)
-    last_week_expenses = Expense.by_user(current_user).where(created_at: 2.weeks.ago..1.weeks.ago).count
-    if last_week_expenses == 0
-      last_week_expenses = 1
+    this_week_expenses = my_tiles.find {|x| x[:inent] == 'this_week_expenses'}
+    last_week_expenses = my_tiles.find {|x| x[:inent] == 'last_week_expenses'}
+    if this_week_expenses.nil?
+      this_week_expenses = Tile.new(count: 0, sum: 0)
     end
-    last_week_percent_expense = (this_week_expenses - last_week_expenses) * 100 / last_week_expenses
+    if last_week_expenses.nil?
+      last_week_expenses = Tile.new(count: 1, sum: 1)
+    end
+    last_week_percent_expense = (this_week_expenses.sum - last_week_expenses.sum) * 100 / last_week_expenses.sum
 
-
-    this_week_profit = this_week_income - this_week_expenses
-    last_week_profit = last_week_income - last_week_expenses
+    this_week_profit = this_week_income - this_week_expenses.sum
+    last_week_profit = last_week_income - last_week_expenses.sum
     if last_week_profit == 0
       last_week_profit = 1
     end
     last_week_percent_profit = (this_week_profit - last_week_profit) * 100 / last_week_profit
 
 
-    {:total_customers => total_customers, :this_week_customers => this_week_customers,
-     :this_week_products => this_week_products, :last_week_percent_product => last_week_percent_product,
-     :this_week_services => this_week_services, :last_week_percent_service => last_week_percent_service,
+    {:total_customers => all_customers.count, :this_week_customers => this_week_customers.count,
+     :this_week_products => this_week_products.count, :last_week_percent_product => last_week_percent_product,
+     :this_week_services => this_week_services.count, :last_week_percent_service => last_week_percent_service,
      :this_week_income => this_week_income.round(2), :last_week_percent_income => last_week_percent_income.round(0),
-     :this_week_expenses => this_week_expenses.round(2), :last_week_percent_expense => last_week_percent_expense.round(0),
+     :this_week_expenses => this_week_expenses.sum.round(2), :last_week_percent_expense => last_week_percent_expense.round(0),
      :this_week_profit => this_week_profit.round(2), :last_week_percent_profit => last_week_percent_profit.round(0)}
   end
 
