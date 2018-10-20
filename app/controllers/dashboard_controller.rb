@@ -17,10 +17,14 @@ class DashboardController < ApplicationController
 
   def create
     unless p_params[:customer_id].nil?
+      date = p_params[:created_at]
       unless p_params['customer_products'].nil?
         p_params['customer_products'].each do |record_params|
           unless record_params[:product_id].blank?
             @record = CustomerProduct.new(record_params)
+            unless date.blank?
+              @record.created_at = date
+            end
             if @record.price.blank?
               @record.price = Product.find(record_params[:product_id]).price
             end
@@ -36,6 +40,9 @@ class DashboardController < ApplicationController
         p_params['customer_services'].each do |record_params|
           unless record_params[:service_id].blank?
             @record = CustomerService.new(record_params)
+            unless date.blank?
+              @record.created_at = date
+            end
             if @record.price.blank?
               @record.price = Service.find(record_params[:service_id]).price
             end
@@ -128,7 +135,7 @@ class DashboardController < ApplicationController
   end
 
   def p_params
-    params.permit(:customer_id, :partner_id,
+    params.permit(:customer_id, :partner_id, :created_at,
                   {:customer_products => [:product_id, :amount, :price, :comment, :created_at]},
                   {:customer_services => [:service_id, :amount, :price, :comment, :created_at]})
   end

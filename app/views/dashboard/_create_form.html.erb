@@ -12,6 +12,7 @@
       <%= form.select(:partner_id, @partners.pluck(:name, :id),
                       {label: 'Επιλέξτε Συνεργάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
                       {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
+      <%= datepicker_input(form, :created_at) %>
 
 
       <hr>
@@ -58,6 +59,12 @@
               $('#new_services').append("<%= escape_javascript (render partial: 'dashboard/service_form', locals: {form: form} ) %>");
           });
           $('.selectpicker').selectpicker();
+          $('.input-group.date').datetimepicker({
+              format: 'DD/M/YYYY HH:mm',
+              locale: 'el',
+              allowInputToggle: true,
+              showClose: true
+          });
       </script>
 
       <%= form.form_group do %>

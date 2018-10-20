@@ -2,7 +2,6 @@
   <%= c.select(:product_id, @products.collect {|p| [p, p.id]},
                {label: 'Επιλέξτε Προϊόν', :prompt => 'Δεν έχει επιλεγεί κάποιο'},
                {class: 'selectpicker', 'data-live-search' => 'true'}) %>
-  <%= datepicker_input(c, :created_at) %>
   <%= c.number_field :amount, label: 'Ποσότητα',
                      data: {toggle: 'tooltip'},
                      title: 'αφήστε κενό για ποσότητα ίση με ένα',
@@ -21,12 +20,6 @@
     $('.collapse').collapse();
     $('.selectpicker').selectpicker();
     $("input").tooltip();
-    $('.input-group.date').datetimepicker({
-        format: 'DD/M/YYYY HH:mm',
-        locale: 'el',
-        allowInputToggle: true,
-        showClose: true
-    });
 </script>
 
 
