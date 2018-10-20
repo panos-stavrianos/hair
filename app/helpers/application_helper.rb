@@ -35,12 +35,16 @@ module ApplicationHelper
   end
 
   def datepicker_input(form, field)
-    form.form_group :terms do
-      content_tag :div, class: 'input-group date', id: 'sasa' do
-        (form.datetime_field_without_bootstrap(field, {class: 'form-control'})) +
-            (content_tag :span, class: 'input-group-addon' do
-              content_tag :span, '', class: 'glyphicon glyphicon-calendar'
-            end)
+    content_tag :container do
+      content_tag :row do
+        (form.form_group :terms do
+          content_tag :div, class: 'input-group date', id: 'sasa' do
+            (form.text_field_without_bootstrap(field, {class: 'form-control'})) +
+                (content_tag :span, class: 'input-group-addon' do
+                  content_tag :span, '', class: 'glyphicon glyphicon-calendar'
+                end)
+          end
+        end)
       end
     end
   end
@@ -59,4 +63,3 @@ module ApplicationHelper
   end
 
 end
-
