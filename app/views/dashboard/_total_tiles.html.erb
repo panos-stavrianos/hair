@@ -1,6 +1,4 @@
 <!-- top tiles -->
-<button style="width:100%" id="slide"></button>
-
 <div class="tile_count" id="tiles">
   <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
     <span class="count_top"><i class="fa fa-user"></i> Συνολικοί Πελάτες</span>
@@ -33,13 +31,4 @@
     <%= percent_tile(@tiles[:last_week_percent_profit], 'απο την προηγούμενη εβδομάδα') %>
   </div>
 </div>
-
 <!-- /top tiles -->
-
-<script>
-    $(document).ready(function () {
-        $("#slide").click(function () {
-            $("#tiles").slideToggle("slow");
-        });
-    });
-</script>

@@ -104,6 +104,10 @@ $(document).on('turbolinks:load', function () {
                 });
             }
         });
+        $("#tiles_toggle").click(function () {
+            $(".tile_count").toggle();
+            setContentHeight();
+        });
 
 // toggle small or large menu
         $MENU_TOGGLE.on('click', function () {
