@@ -106,6 +106,7 @@ $(document).on('turbolinks:load', function () {
         });
         $("#tiles_toggle").click(function () {
             $(".tile_count").toggle();
+            $("#tiles_toggle_icon").toggleClass("glyphicon-chevron-up glyphicon-chevron-down");
             setContentHeight();
         });
 
