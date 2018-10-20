@@ -1,7 +1,8 @@
 <%= form.fields_for 'customer_products[]', CustomerProduct.new do |c| %>
-  <%= c.select(:product_id, @products.collect {|p| [p, p.id]},
+  <%= c.select(:product_id, @products.collect {|p| [p, p.id, data: {'price': p.price}]},
                {label: 'Επιλέξτε Προϊόν', :prompt => 'Δεν έχει επιλεγεί κάποιο'},
-               {class: 'selectpicker', 'data-live-search' => 'true'}) %>
+               {class: 'selectpicker in_price', 'data-live-search' => 'true'}) %>
+
   <%= c.number_field :amount, label: 'Ποσότητα',
                      data: {toggle: 'tooltip'},
                      title: 'αφήστε κενό για ποσότητα ίση με ένα',

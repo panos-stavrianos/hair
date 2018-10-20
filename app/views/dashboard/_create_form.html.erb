@@ -52,10 +52,13 @@
           $('#add_product').click(function (event) {
               event.stopPropagation();
               $('#new_products').append("<%= escape_javascript (render partial: 'dashboard/product_form', locals: {form: form} ) %>");
+              init_prices();
           });
           $('#add_service').click(function (event) {
               event.stopPropagation();
               $('#new_services').append("<%= escape_javascript (render partial: 'dashboard/service_form', locals: {form: form} ) %>");
+              init_prices();
+
           });
           $('.selectpicker').selectpicker();
           $('.input-group.date').datetimepicker({
@@ -64,13 +67,31 @@
               allowInputToggle: true,
               showClose: true
           });
+
+
       </script>
 
       <%= form.form_group do %>
         <%= form.primary 'Προσθήκη' %>
+        <h3 class="pull-right green" id="sum">0€</h3>
       <% end %>
     <% end %>
   </div>
 </div>
-
-
+<script>
+    function init_prices() {
+        let in_price = $('select.in_price');
+        in_price.on('change', function () {
+            var sum = 0.0;
+            in_price.each(function () {
+                $(this).find("option:selected").each(function () {
+                    price = parseFloat($(this).data().price);
+                    if (!isNaN(price))
+                        sum += price;
+                });
+            });
+            console.log("sum", sum);
+            $('#sum').text(`${sum}€`)
+        });
+    }
+</script>

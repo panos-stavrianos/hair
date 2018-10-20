@@ -48,6 +48,7 @@ $(document).on('turbolinks:load', function () {
         $BODY = $('body'),
         $BODY2 = $('#body'),
         $MENU_TOGGLE = $('#menu_toggle'),
+        $TILES_TOGGLE = $('#tiles_toggle'),
         $SIDEBAR_MENU = $('#sidebar-menu'),
         $SIDEBAR_FOOTER = $('.sidebar-footer'),
         $LEFT_COL = $('.left_col'),
@@ -104,15 +105,16 @@ $(document).on('turbolinks:load', function () {
                 });
             }
         });
-        $("#tiles_toggle").click(function () {
+
+        // toggle tiles
+        $TILES_TOGGLE.click(function () {
             $(".tile_count").toggle();
             $("#tiles_toggle_icon").toggleClass("glyphicon-chevron-up glyphicon-chevron-down");
             setContentHeight();
         });
 
-
         if (!$BODY.find('.tile_count').length) {
-            $("#tiles_toggle").hide();
+            $TILES_TOGGLE.hide();
         }
 
 // toggle small or large menu
