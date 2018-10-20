@@ -110,6 +110,11 @@ $(document).on('turbolinks:load', function () {
             setContentHeight();
         });
 
+
+        if (!$BODY.find('.tile_count').length) {
+            $("#tiles_toggle").hide();
+        }
+
 // toggle small or large menu
         $MENU_TOGGLE.on('click', function () {
             console.log('clicked - menu toggle');
