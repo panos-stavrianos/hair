@@ -4,4 +4,5 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require moment/el
+//= require dashboard
 //= require turbolinks

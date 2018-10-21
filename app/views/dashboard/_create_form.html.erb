@@ -1,14 +1,27 @@
 <div class="x_panel">
   <div class="x_title">
     <h2 id="dd">Προσθήκη Υπηρεσιών και Προϊόντων</h2>
+    <h2 class="pull-right green sum">0€</h2>
+
     <div class="clearfix"></div>
   </div>
   <div class="x_content">
 
-    <%= bootstrap_form_tag url: dashboard_index_path do |form| %>
+    <%= bootstrap_form_tag url: dashboard_index_path, html: {id: 'add_product_service_form'} do |form| %>
       <%= form.select(:customer_id, @customers.pluck(:name, :id),
                       {label: 'Επιλέξτε Πελάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
                       {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
+      <div class="col-sm-9" style="padding: 25px">
+        <%= form.check_box :student_discount, label: 'Φοιτητική έκπτωση',
+                           class: 'js-switch' %>
+      </div>
+
+      <%= form.number_field :discount, label: 'Έκπτωση',
+                            data: {toggle: 'tooltip'},
+                            title: 'αφήστε κενό για ποσότητα ίση με ένα',
+                            min: '0', max: '100',
+                            wrapper: {class: 'col-sm-3'} %>
+
       <%= form.select(:partner_id, @partners.pluck(:name, :id),
                       {label: 'Επιλέξτε Συνεργάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
                       {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
@@ -17,7 +30,7 @@
       <hr>
       <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel">
-          <a class="panel-heading" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
             <div id="add_service" class="col-sm-1 navbar-right">
               <div class="round round-sm hollow blue">
                 <span class="glyphicon glyphicon-plus"></span>
@@ -48,50 +61,22 @@
         </div>
       </div>
 
+
       <script>
-          $('#add_product').click(function (event) {
-              event.stopPropagation();
-              $('#new_products').append("<%= escape_javascript (render partial: 'dashboard/product_form', locals: {form: form} ) %>");
-              init_prices();
+          $('#add_product').click(function () {
+              $('#new_products').append("<%= escape_javascript (render partial: 'dashboard/product_form', locals: {form: form} ,remote: true) %>");
           });
-          $('#add_service').click(function (event) {
-              event.stopPropagation();
+          $('#add_service').click(function () {
               $('#new_services').append("<%= escape_javascript (render partial: 'dashboard/service_form', locals: {form: form} ) %>");
-              init_prices();
-
           });
-          $('.selectpicker').selectpicker();
-          $('.input-group.date').datetimepicker({
-              format: 'DD/M/YYYY HH:mm',
-              locale: 'el',
-              allowInputToggle: true,
-              showClose: true
-          });
-
-
       </script>
 
       <%= form.form_group do %>
         <%= form.primary 'Προσθήκη' %>
-        <h3 class="pull-right green" id="sum">0€</h3>
+        <h2 class="pull-right green sum">0€</h2>
       <% end %>
+      </div>
+
     <% end %>
-  </div>
-</div>
-<script>
-    function init_prices() {
-        let in_price = $('select.in_price');
-        in_price.on('change', function () {
-            var sum = 0.0;
-            in_price.each(function () {
-                $(this).find("option:selected").each(function () {
-                    price = parseFloat($(this).data().price);
-                    if (!isNaN(price))
-                        sum += price;
-                });
-            });
-            console.log("sum", sum);
-            $('#sum').text(`${sum}€`)
-        });
-    }
-</script>
+    </div>
+

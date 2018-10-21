@@ -1,28 +1,23 @@
-<%= form.fields_for 'customer_products[]', CustomerProduct.new do |c| %>
-  <%= c.select(:product_id, @products.collect {|p| [p, p.id, data: {'price': p.price}]},
-               {label: 'Επιλέξτε Προϊόν', :prompt => 'Δεν έχει επιλεγεί κάποιο'},
-               {class: 'selectpicker in_price', 'data-live-search' => 'true'}) %>
+<div class="panel-body">
+  <%= form.fields_for 'customer_products[]', CustomerProduct.new do |c| %>
+    <a class="more_fields_toggle pull-right"><i class="glyphicon glyphicon-chevron-down"></i></a>
+    <%= c.select(:product_id, @products.collect {|p| [p, p.id, data: {'price': p.price}]},
+                 {label: 'Επιλέξτε Προϊόν', :prompt => 'Δεν έχει επιλεγεί κάποιο'},
+                 {class: 'selectpicker in_price', 'data-live-search' => 'true'}) %>
+    <div class="more_fields" style="display: none;">
+      <%= c.number_field :amount, label: 'Ποσότητα',
+                         class: :amount,
+                         data: {toggle: 'tooltip'},
+                         title: 'αφήστε κενό για ποσότητα ίση με ένα',
+                         wrapper: {class: 'col-sm-6'} %>
+      <%= c.number_field :price, label: 'Τιμή',
+                         class: 'text_field custom_price',
+                         step: :any,
+                         data: {toggle: 'tooltip'},
+                         title: 'αφήστε κενό για την προκαθορισμένη τιμή',
+                         wrapper: {class: 'col-sm-6'} %>
+      <%= c.text_field :comment, label: 'Σχόλιο' %>
+    </div>
 
-  <%= c.number_field :amount, label: 'Ποσότητα',
-                     data: {toggle: 'tooltip'},
-                     title: 'αφήστε κενό για ποσότητα ίση με ένα',
-                     wrapper: {class: 'col-sm-6'} %>
-  <%= c.number_field :price, label: 'Τιμή',
-                     class: :text_field,
-                     step: :any,
-                     data: {toggle: 'tooltip'},
-                     title: 'αφήστε κενό για την προκαθορισμένη τιμή',
-                     wrapper: {class: 'col-sm-6'} %>
-  <%= c.text_field :comment, label: 'Σχόλιο' %>
-<% end %>
-<hr>
-
-<script>
-    $('.collapse').collapse();
-    $('.selectpicker').selectpicker();
-    $("input").tooltip();
-</script>
-
-
-
-
+  <% end %>
+</div>

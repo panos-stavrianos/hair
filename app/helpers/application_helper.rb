@@ -34,12 +34,27 @@ module ApplicationHelper
     "<span class='#{icon_class}'></span>"
   end
 
+  def datepicker_input2(form, field, value = nil)
+    content_tag :container do
+      content_tag :row do
+        (form.form_group :terms do
+          content_tag :div, class: 'input-group date', id: 'sasa' do
+            (form.text_field_without_bootstrap(field, {class: 'form-control', :value => "#{value.strftime("%d-%m-%YYYY %H:%M") unless value.nil?}"})) +
+                (content_tag :span, class: 'input-group-addon' do
+                  content_tag :span, '', class: 'glyphicon glyphicon-calendar'
+                end)
+          end
+        end)
+      end
+    end
+  end
+
   def datepicker_input(form, field)
     content_tag :container do
       content_tag :row do
         (form.form_group :terms do
           content_tag :div, class: 'input-group date', id: 'sasa' do
-            (form.text_field_without_bootstrap(field, {class: 'form-control'})) +
+            (form.text_field_without_bootstrap(field, {class: 'form-control', :value => "#{form.object[field].try(:strftime, "%d-%m-%YYYY %H:%M") unless form.object.nil? }"})) +
                 (content_tag :span, class: 'input-group-addon' do
                   content_tag :span, '', class: 'glyphicon glyphicon-calendar'
                 end)
