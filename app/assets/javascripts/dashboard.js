@@ -58,9 +58,9 @@ $(document).on('click', ".more_fields_toggle", function () {
 });
 
 function set_sum() {
-    let in_price = $('select.in_price');
+
     let sum = 0.0;
-    in_price.each(function () {
+    $('select.in_price').each(function () {
         let amount = $(this).parent().parent().parent().find('input.amount').val();
         let custom_price = $(this).parent().parent().parent().find('input.custom_price').val();
         console.log(amount);
