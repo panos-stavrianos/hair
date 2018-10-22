@@ -5,6 +5,8 @@ class CustomerService < ApplicationRecord
   belongs_to :user
 
   scope :by_user, ->(current_user) {where(user: current_user).order(created_at: :desc)}
+  scope :by_user_no_order, ->(current_user) {where(user: current_user)}
+  before_save :time_zone_fix
 
   def create_with_user(current_user)
     self.user = current_user if user.nil?
@@ -13,10 +15,6 @@ class CustomerService < ApplicationRecord
 
   def price_in_euro
     "#{price}€"
-  end
-
-  def created_at_s
-    created_at.strftime("%H:%M  %d/%m/%Y")
   end
 
   def price_tooltip
@@ -45,5 +43,17 @@ class CustomerService < ApplicationRecord
 
   def amount_price
     "#{is_amount_one ? '' : (amount.to_s + '#')} #{actual_price}€  #{total_paid_s}"
+  end
+
+  def created_at_s
+    timezone = Timezone['Europe/Athens']
+    timezone.utc_to_local(created_at).strftime("%H:%M  %d/%m/%Y")
+  end
+
+  def time_zone_fix
+    unless created_at.blank?
+      timezone = Timezone['Europe/Athens']
+      self.created_at = timezone.local_to_utc(created_at)
+    end
   end
 end

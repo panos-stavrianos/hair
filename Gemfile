@@ -87,3 +87,9 @@ gem 'bootstrap-select-rails'
 
 #For sql views
 gem 'scenic-mysql_adapter'
+#for charts
+gem 'chartkick'
+gem 'highcharts_rails'
+gem 'groupdate'
+gem 'timezone', '~> 1.0'
+

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
-
+  timezone = Timezone['Europe/Athens']
   private
 
   def layout_by_resource

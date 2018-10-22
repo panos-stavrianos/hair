@@ -15,7 +15,7 @@
       <tbody>
       <% @records.each {|record| %>
         <tr>
-          <%= row(record.name) %>
+          <%= show_row(record, record.name) %>
           <%= row(record.sex_to_s) %>
           <%= row(record.phone_1) %>
           <%= row(record.phone_2) %>

@@ -30,4 +30,7 @@ Rails.application.routes.draw do
     end
   end
 
+  #path for charts
+  get 'customer/visits_by_day_services/:id(.:format)' => 'customers#visits_by_day_services', as: "visits_by_day_customer_services"
+  get 'customer/visits_by_day_products/:id(.:format)' => 'customers#visits_by_day_products', as: "visits_by_day_customer_products"
 end

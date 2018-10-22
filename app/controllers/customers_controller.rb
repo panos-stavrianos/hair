@@ -3,6 +3,11 @@ class CustomersController < ApplicationController
     @records = Customer.by_user(current_user)
   end
 
+  def show
+    @record = Customer.by_user(current_user).find(params[:id])
+
+  end
+
   def create
     @record = Customer.new(customer_params).create_with_user(current_user)
     redirect_to customers_path
@@ -26,6 +31,19 @@ class CustomersController < ApplicationController
     @record = Customer.find(params[:id])
     @record.destroy
     redirect_to customers_path
+  end
+
+  def visits_by_day_products
+    render json: CustomerService.by_user_no_order(current_user).where(customer: params[:id]).group_by_day(:created_at, format: "%B %d, %Y").count
+  end
+
+  def visits_by_day_services
+
+    response = [
+        {name: "Products", data: CustomerProduct.by_user_no_order(current_user).where(customer: params[:id]).group_by_day(:created_at, format: "%B %d, %Y").count},
+        {name: "Services", data: CustomerService.by_user_no_order(current_user).where(customer: params[:id]).group_by_day(:created_at, format: "%B %d, %Y").count}
+    ]
+    render json: response
   end
 
   def customer_params
