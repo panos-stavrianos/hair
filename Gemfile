@@ -89,7 +89,7 @@ gem 'bootstrap-select-rails'
 gem 'scenic-mysql_adapter'
 #for charts
 gem 'chartkick'
-gem 'highcharts_rails'
 gem 'groupdate'
 gem 'timezone', '~> 1.0'
 
+gem 'bootstrap-daterangepicker-rails'

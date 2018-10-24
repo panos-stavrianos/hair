@@ -4,7 +4,11 @@
     <%= c.select(:product_id, @products.collect {|p| [p, p.id, data: {'price': p.price}]},
                  {label: 'Επιλέξτε Προϊόν', :prompt => 'Δεν έχει επιλεγεί κάποιο'},
                  {class: 'selectpicker in_price', 'data-live-search' => 'true'}) %>
+
     <div class="more_fields" style="display: none;">
+      <%= c.select(:partner_id, @partners.pluck(:name, :id),
+                   {label: 'Επιλέξτε Συνεργάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
+                   {class: 'selectpicker form-control', 'data-live-search' => 'true'}) %>
       <%= c.number_field :amount, label: 'Ποσότητα',
                          class: :amount,
                          data: {toggle: 'tooltip'},
@@ -18,6 +22,5 @@
                          wrapper: {class: 'col-sm-6'} %>
       <%= c.text_field :comment, label: 'Σχόλιο' %>
     </div>
-
   <% end %>
 </div>

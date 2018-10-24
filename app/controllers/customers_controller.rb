@@ -33,12 +33,8 @@ class CustomersController < ApplicationController
     redirect_to customers_path
   end
 
-  def visits_by_day_products
-    render json: CustomerService.by_user_no_order(current_user).where(customer: params[:id]).group_by_day(:created_at, format: "%B %d, %Y").count
-  end
 
-  def visits_by_day_services
-
+  def products_services_by_day
     response = [
         {name: "Products", data: CustomerProduct.by_user_no_order(current_user).where(customer: params[:id]).group_by_day(:created_at, format: "%B %d, %Y").count},
         {name: "Services", data: CustomerService.by_user_no_order(current_user).where(customer: params[:id]).group_by_day(:created_at, format: "%B %d, %Y").count}

@@ -1,0 +1,19 @@
+<div class="x_panel">
+  <div class="x_title">
+    <h2>Δημιουργία Έκπτωσης</h2>
+    <div class="clearfix"></div>
+  </div>
+  <div class="x_content">
+    <%= bootstrap_form_for :discount, url: {controller: 'discounts', action: 'create'} do |f| %>
+      <%= f.text_field :name, label: 'Όνομα' %>
+      <%= f.number_field :per_cent, label: 'Επί τοις εκατό',
+                         class: :text_field,
+                         step: :any %>
+      <%= f.check_box :enabled, {label: 'Ενεργός', checked: true} %>
+
+      <%= f.form_group do %>
+        <%= f.primary 'Δημιουργία' %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

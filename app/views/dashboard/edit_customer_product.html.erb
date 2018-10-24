@@ -1,0 +1,53 @@
+<div class="col-md-4 col-sm-4 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2 id="dd">Ενημέρωση Προϊόντoς</h2>
+      <h2 class="pull-right green sum">0€</h2>
+
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <div class="panel-body">
+        <%= bootstrap_form_tag url: {controller: 'dashboard', action: 'update_customer_product'}, html: {id: 'add_product_service_form'} do |form| %>
+          <%= form.fields_for @record, url: {controller: 'dashboard', action: 'update_customer_product'} do |f| %>
+            <%= f.select(:customer_id, @customers.pluck(:name, :id),
+                         {label: 'Επιλέξτε Πελάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
+                         {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
+
+            <%= f.select(:product_id, @products.collect {|p| [p, p.id, data: {'price': p.price}]},
+                         {label: 'Επιλέξτε Προϊόν', :prompt => 'Δεν έχει επιλεγεί κάποιο'},
+                         {class: 'selectpicker in_price', 'data-live-search' => 'true'}) %>
+            <%= datepicker_input(form, :created_at) %>
+
+            <%= f.number_field :amount, label: 'Ποσότητα',
+                               class: :amount,
+                               data: {toggle: 'tooltip'},
+                               title: 'αφήστε κενό για ποσότητα ίση με ένα',
+                               wrapper: {class: 'col-sm-6'} %>
+
+            <%= f.number_field :price, label: 'Τιμή',
+                               class: 'text_field custom_price',
+                               step: :any,
+                               data: {toggle: 'tooltip'},
+                               title: 'αφήστε κενό για την προκαθορισμένη τιμή',
+                               wrapper: {class: 'col-sm-6'} %>
+            <div class="col-sm-9" style="padding: 25px">
+              <%= form.check_box :student_discount, label: 'Φοιτητική έκπτωση',
+                                 class: 'js-switch' %>
+            </div>
+
+            <%= form.number_field :discount, label: 'Έκπτωση',
+                                  data: {toggle: 'tooltip'},
+                                  title: 'αφήστε κενό για ποσότητα ίση με ένα',
+                                  min: '0', max: '100',
+                                  wrapper: {class: 'col-sm-3'} %>
+            <%= f.text_field :comment, label: 'Σχόλιο' %>
+            <%= f.form_group do %>
+              <%= f.primary 'Ενημέρωση' %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

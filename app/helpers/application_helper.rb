@@ -58,6 +58,23 @@ module ApplicationHelper
     end
   end
 
+  def daterangepicker_input(form, field)
+    timezone = Timezone['Europe/Athens']
+
+    content_tag :container do
+      content_tag :row do
+        (form.form_group :terms do
+          content_tag :div, class: 'input-group date', id: 'sasa' do
+            (form.text_field_without_bootstrap(field, {class: 'form-control',
+                                                       :value => "#{timezone.utc_to_local(form.object[field]).try(:strftime, "%d-%m-%YYYY %H:%M") unless form.object.nil? }"})) +
+                (content_tag :span, class: 'input-group-addon' do
+                  content_tag :span, '', class: 'glyphicon glyphicon-calendar'
+                end)
+          end
+        end)
+      end
+    end
+  end
   def percent_tile(value, text)
     color = value > 0 ? 'green' : 'red'
     arrow = value > 0 ? 'fa fa-sort-asc' : 'fa fa-sort-desc'

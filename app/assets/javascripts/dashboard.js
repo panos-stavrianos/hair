@@ -4,7 +4,7 @@ $(document).on('turbolinks:load', function () {
     $('.selectpicker').selectpicker();
 
     $('.input-group.date').datetimepicker({
-        format: 'DD/M/YYYY HH:mm',
+        format: 'DD/MM/YYYY HH:mm',
         locale: 'el',
         allowInputToggle: true,
         showClose: true
@@ -21,19 +21,18 @@ $(document).on('turbolinks:load', function () {
 
     init_MyDataTables();
 
-
-
+    init_MyDaterRangePicker();
 
 });
-$(document).on('keyup change', "#discount,input.amount,input.custom_price,select.in_price", function () {
+$(document).on('keyup change', "#discount_per_cent,input.amount,input.custom_price,select.in_price", function () {
     set_sum()
 });
 
-$(document).on('change', "#student_discount", function () {
-    if ($(this).is(":checked"))
-        $('#discount').val('20');
-    else
-        $('#discount').val('');
+$(document).on('change', "#discount_id", function () {
+    $(this).find("option:selected").each(function () {
+        let per_cent = parseFloat($(this).data().percent);
+        $('#discount_per_cent').val(per_cent);
+    });
     set_sum()
 });
 
@@ -64,7 +63,7 @@ function set_sum() {
                 sum += price * amount;
         });
     });
-    let discount = parseFloat($('#discount').val());
+    let discount = parseFloat($('#discount_per_cent').val());
     console.log(discount);
 
     if (!discount)
@@ -115,4 +114,27 @@ function init_MyDataTables() {
     });
 }
 
+
+function init_MyDaterRangePicker() {
+    $(document).ready(function () {
+        $('.date_range').daterangepicker({
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
+                'Last 7 Days': [moment().subtract('days', 6), moment()],
+                'Last 30 Days': [moment().subtract('days', 29), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+            },
+            locale: {format: 'DD/MM/YYYY'},
+            cancelLabel: 'Clear',
+            opens: 'left'
+        });
+
+        $('.date_range').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
+    });
+
+}
 

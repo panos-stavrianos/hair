@@ -1,11 +1,21 @@
 <%= render 'dashboard/total_tiles' %>
+
 <div class="col-md-4 col-sm-4 col-xs-12">
   <%= render 'dashboard/create_form' %>
+</div>
+
+<div class="col-md-4 col-sm-4 col-xs-12 ">
+  <%= render 'dashboard/charts/by_sex' %>
+</div>
+
+<div class="col-md-4 col-sm-4 col-xs-12 ">
+  <%= render 'dashboard/charts/products_services_by_day' %>
 </div>
 
 <div class="col-md-8 col-sm-8 col-xs-12 pull-right">
   <%= render 'dashboard/services_table' %>
 </div>
+
 <div class="col-md-8 col-sm-8 col-xs-12 pull-right">
   <%= render 'dashboard/products_table' %>
 </div>

@@ -1,9 +1,11 @@
 class CustomerProduct < ApplicationRecord
   belongs_to :customer
   belongs_to :product
+  belongs_to :partner
+  belongs_to :discount, optional: true
   belongs_to :user
 
-  scope :by_user, ->(current_user) {includes(:customer, :product).where(user: current_user).order(created_at: :desc)}
+  scope :by_user, ->(current_user) {where(user: current_user).order(created_at: :desc)}
   scope :by_user_no_order, ->(current_user) {where(user: current_user)}
 
   before_save :time_zone_fix
@@ -16,7 +18,6 @@ class CustomerProduct < ApplicationRecord
   def price_in_euro
     "#{price}€"
   end
-
 
   def price_tooltip
     "προκαθορισμένη τιμή: #{product.price_in_euro}"
@@ -58,5 +59,3 @@ class CustomerProduct < ApplicationRecord
     end
   end
 end
-
-

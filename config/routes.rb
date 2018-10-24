@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   delete 'customer_product/:id(.:format)' => 'dashboard#destroy_customer_product', as: 'destroy_customer_product'
   delete 'customer_service/:id(.:format)' => 'dashboard#destroy_customer_service', as: 'destroy_customer_service'
 
+  get 'customer_product/:id(.:format)' => 'dashboard#edit_customer_product', as: 'edit_customer_product'
+  get 'customer_service/:id(.:format)' => 'dashboard#edit_customer_service', as: 'edit_customer_service'
+
+  patch 'customer_product/:id(.:format)' => 'dashboard#update_customer_product', as: 'update_customer_product'
+  patch 'customer_service/:id(.:format)' => 'dashboard#update_customer_service', as: 'update_customer_service'
+
   resources :customers
   resources :expenses
 
@@ -30,7 +36,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :discounts do
+    member do
+      patch :toggle_enabled
+    end
+  end
   #path for charts
-  get 'customer/visits_by_day_services/:id(.:format)' => 'customers#visits_by_day_services', as: "visits_by_day_customer_services"
-  get 'customer/visits_by_day_products/:id(.:format)' => 'customers#visits_by_day_products', as: "visits_by_day_customer_products"
+  get 'customer/products_services_by_day/:id(.:format)' => 'customers#products_services_by_day', as: "customer_products_services_by_day"
+  get 'dashboard_index/products_services_by_day' => 'dashboard#products_services_by_day', as: "dashboard_products_services_by_day", :via => :get
+  get 'dashboard_index/customers_by_sex' => 'dashboard#customers_by_sex', as: "dashboard_customers_by_sex", :via => :get
 end

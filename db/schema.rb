@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_19_020842) do
+ActiveRecord::Schema.define(version: 2018_10_24_120906) do
 
   create_table "customer_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "customer_id"
@@ -21,7 +21,12 @@ ActiveRecord::Schema.define(version: 2018_10_19_020842) do
     t.string "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "discount_id"
+    t.bigint "partner_id"
+    t.float "discount_per_cent", default: 0.0
     t.index ["customer_id"], name: "index_customer_products_on_customer_id"
+    t.index ["discount_id"], name: "index_customer_products_on_discount_id"
+    t.index ["partner_id"], name: "index_customer_products_on_partner_id"
     t.index ["product_id"], name: "index_customer_products_on_product_id"
     t.index ["user_id"], name: "index_customer_products_on_user_id"
   end
@@ -36,7 +41,10 @@ ActiveRecord::Schema.define(version: 2018_10_19_020842) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "partner_id"
+    t.bigint "discount_id"
+    t.float "discount_per_cent", default: 0.0
     t.index ["customer_id"], name: "index_customer_services_on_customer_id"
+    t.index ["discount_id"], name: "index_customer_services_on_discount_id"
     t.index ["partner_id"], name: "index_customer_services_on_partner_id"
     t.index ["service_id"], name: "index_customer_services_on_service_id"
     t.index ["user_id"], name: "index_customer_services_on_user_id"
@@ -50,8 +58,18 @@ ActiveRecord::Schema.define(version: 2018_10_19_020842) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "sex"
+    t.integer "sex"
     t.index ["user_id"], name: "index_customers_on_user_id"
+  end
+
+  create_table "discounts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.float "per_cent"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "enabled", default: true
+    t.index ["user_id"], name: "index_discounts_on_user_id"
   end
 
   create_table "expenses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

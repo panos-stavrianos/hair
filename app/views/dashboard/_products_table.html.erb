@@ -12,6 +12,7 @@
         <th>Ποσότητα - Τιμή</th>
         <th>Σχόλιο</th>
         <th>Ημ/Ώρα</th>
+        <th>Ενημέρωση</th>
         <th>Διαγραφή</th>
       </tr>
       </thead>
@@ -27,6 +28,7 @@
           <%= row_with_tooltip(record.created_at_s,
                                time_ago_in_words(record.created_at),
                                "data-sort='#{record.created_at}'") %>
+          <%= edit_row(edit_customer_product_path(record)) %>
           <%= delete_row(destroy_customer_product_path(record)) %>
         </tr>
       <% } %>

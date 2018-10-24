@@ -6,7 +6,7 @@
   <div class="x_content">
     <%= bootstrap_form_for @record, url: {controller: 'customers', action: 'update'} do |f| %>
       <%= f.text_field :name, label: 'Όνομα' %>
-      <%= f.select :sex, [['Γυναίκα', true], ['Άνδρας', false]], {label: 'Επιλέξτε φύλο:'}, {class: 'selectpicker'} %>
+      <%= f.select :sex, [['Γυναίκα', :woman], ['Άνδρας', :man]], {label: 'Επιλέξτε φύλο:'}, {class: 'selectpicker'} %>
       <%= f.phone_field :phone_1, label: 'Τηλέφωνο 1' %>
       <%= f.phone_field :phone_2, label: 'Τηλέφωνο 2' %>
       <%= f.text_field :comment, label: 'Σχόλιο' %>

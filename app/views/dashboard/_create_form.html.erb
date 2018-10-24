@@ -11,20 +11,21 @@
       <%= form.select(:customer_id, @customers.pluck(:name, :id),
                       {label: 'Επιλέξτε Πελάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
                       {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
-      <div class="col-sm-9" style="padding: 25px">
-        <%= form.check_box :student_discount, label: 'Φοιτητική έκπτωση',
-                           class: 'js-switch' %>
-      </div>
-
-      <%= form.number_field :discount, label: 'Έκπτωση',
-                            data: {toggle: 'tooltip'},
-                            title: 'αφήστε κενό για ποσότητα ίση με ένα',
-                            min: '0', max: '100',
-                            wrapper: {class: 'col-sm-3'} %>
-
       <%= form.select(:partner_id, @partners.pluck(:name, :id),
                       {label: 'Επιλέξτε Συνεργάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
                       {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
+      <div class="col-sm-9">
+        <%= form.select(:discount_id, @discounts.collect {|p| [p, p.id, data: {'percent': p.per_cent}]},
+                        {label: 'Επιλέξτε Έκπτωση', :prompt => 'Δεν έχει επιλεγεί κάποια'},
+                        {class: 'selectpicker', 'data-live-search' => 'true'}) %>
+      </div>
+
+      <%= form.number_field :discount_per_cent, label: 'Έκπτωση',
+                            data: {toggle: 'tooltip'},
+                            min: '0', max: '100',
+                            wrapper: {class: 'col-sm-3'} %>
+
+
       <%= datepicker_input(form, :created_at) %>
 
       <hr>
