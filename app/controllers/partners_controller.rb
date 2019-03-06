@@ -10,11 +10,11 @@ class PartnersController < ApplicationController
 
   def edit
     @records = Partner.by_user(current_user)
-    @record = Partner.find(params[:id])
+    @record = Partner.by_user(current_user).find(params[:id])
   end
 
   def update
-    @record = Partner.find(params[:id])
+    @record = Partner.by_user(current_user).find(params[:id])
     if @record.update_attributes(partner_params)
       redirect_to partners_path
     else

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) {|repo| "https://github.com/#{repo}.git"}
 
-ruby '2.5.1'
+ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
@@ -89,6 +89,8 @@ gem 'bootstrap-select-rails'
 gem 'scenic-mysql_adapter'
 #for charts
 gem 'chartkick'
+gem "highcharts-rails"
+
 gem 'groupdate'
 gem 'timezone', '~> 1.0'
 

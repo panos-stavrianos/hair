@@ -1,0 +1,59 @@
+<div class="col-md-4 col-sm-4 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2 id="dd">Ενημέρωση Υπηρεσίας</h2>
+      <h2 class="pull-right green sum">0€</h2>
+
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <div class="panel-body">
+        <%= bootstrap_form_tag url: {controller: 'products_services', action: 'update_customer_service'}, html: {id: 'add_product_service_form'} do |form| %>
+          <%= form.fields_for @record, url: {controller: 'products_services', action: 'update_customer_service'} do |f| %>
+            <%= f.select(:customer_id, @customers.pluck(:name, :id),
+                         {label: 'Επιλέξτε Πελάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
+                         {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
+            <%= f.select(:partner_id, @partners.pluck(:name, :id),
+                         {label: 'Επιλέξτε Συνεργάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
+                         {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
+            <%= f.select(:service_id, @records.collect {|p| [p, p.id, data: {'price': p.price}]},
+                         {label: 'Επιλέξτε Υπηρεσία', :prompt => 'Δεν έχει επιλεγεί κάποια'},
+                         {class: 'selectpicker in_price', 'data-live-search' => 'true'}) %>
+            <%= datepicker_input(f, :created_at) %>
+
+            <div class="col-sm-9">
+              <%= f.select(:discount_id, @discounts.collect {|p| [p, p.id, data: {'percent': p.per_cent}]},
+                           {label: 'Επιλέξτε Έκπτωση', :prompt => 'Δεν έχει επιλεγεί κάποια'},
+                           {id: 'discount_id', class: 'selectpicker', 'data-live-search' => 'true'}) %>
+            </div>
+
+            <%= f.number_field :discount_per_cent, label: 'Έκπτωση',
+                               id: 'discount_per_cent',
+                               data: {toggle: 'tooltip'},
+                               min: '0', max: '100',
+                               wrapper: {class: 'col-sm-3'} %>
+
+            <%= f.number_field :amount, label: 'Ποσότητα',
+                               class: :amount,
+                               data: {toggle: 'tooltip'},
+                               title: 'αφήστε κενό για ποσότητα ίση με ένα',
+                               wrapper: {class: 'col-sm-6'} %>
+
+            <%= f.number_field :price, label: 'Τιμή',
+                               class: 'text_field custom_price',
+                               step: :any,
+                               value: (@record.price * 100 / (100 - @record.discount_per_cent)).round(2),
+                               data: {toggle: 'tooltip'},
+                               title: 'αφήστε κενό για την προκαθορισμένη τιμή',
+                               wrapper: {class: 'col-sm-6'} %>
+
+            <%= f.text_field :comment, label: 'Σχόλιο' %>
+            <%= f.form_group do %>
+              <%= f.primary 'Ενημέρωση' %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,11 +11,11 @@ class ExpensesController < ApplicationController
 
   def edit
     @records = Expense.by_user(current_user)
-    @record = Expense.find(params[:id])
+    @record = Expense.by_user(current_user).find(params[:id])
   end
 
   def update
-    @record = Expense.find(params[:id])
+    @record = Expense.by_user(current_user).find(params[:id])
     if @record.update_attributes(expense_params)
       redirect_to expenses_path
     else
@@ -24,7 +24,7 @@ class ExpensesController < ApplicationController
   end
 
   def destroy
-    @record = Expense.find(params[:id])
+    @record = Expense.by_user(current_user).find(params[:id])
     @record.destroy
     redirect_to expenses_path
   end

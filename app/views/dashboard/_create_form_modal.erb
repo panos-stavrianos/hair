@@ -1,0 +1,94 @@
+<!-- Modal -->
+<div class="modal right fade" id="create_customer_product_service_modal" tabindex="-1" role="dialog" aria-labelledby="create_customer_product_service_modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel2">Right Sidebar</h4>
+      </div>
+      <%= bootstrap_form_tag url: products_services_path, html: {id: 'add_product_service_form'} do |form| %>
+
+        <div class="modal-body">
+
+
+          <%= form.select(:customer_id, @customers.pluck(:name, :id),
+                          {label: 'Επιλέξτε Πελάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
+                          {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
+          <%= form.select(:partner_id, @partners.pluck(:name, :id),
+                          {label: 'Επιλέξτε Συνεργάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
+                          {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
+          <div class="col-sm-9">
+            <%= form.select(:discount_id, @discounts.collect {|p| [p, p.id, data: {'percent': p.per_cent}]},
+                            {label: 'Επιλέξτε Έκπτωση', :prompt => 'Δεν έχει επιλεγεί κάποια'},
+                            {class: 'selectpicker', 'data-live-search' => 'true'}) %>
+          </div>
+
+          <%= form.number_field :discount_per_cent, label: 'Έκπτωση',
+                                data: {toggle: 'tooltip'},
+                                min: '0', max: '100',
+                                wrapper: {class: 'col-sm-3'} %>
+
+
+          <%= datepicker_input(form, :created_at) %>
+
+          <hr>
+          <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel">
+              <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <div id="add_service" class="col-sm-1 navbar-right">
+                  <div class="round round-sm hollow blue">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </div>
+                </div>
+                <h4 class="panel-title">Υπηρεσίες</h4>
+              </a>
+              <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                  <div id="new_services"></div>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <a class="panel-heading collapsed" role="tab" id="headingOne" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                <div id="add_product" class="col-sm-1 navbar-right">
+                  <div class="round round-sm hollow blue">
+                    <span class="glyphicon glyphicon-plus"></span>
+                  </div>
+                </div>
+                <h4 class="panel-title">Προϊόντα</h4>
+              </a>
+              <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                  <div id="new_products"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <script>
+              $('#add_product').click(function () {
+                  $('#new_products').append("<%= escape_javascript (render partial: 'products_services/product_form', locals: {form: form} ,remote: true) %>");
+              });
+              $('#add_service').click(function () {
+                  $('#new_services').append("<%= escape_javascript (render partial: 'products_services/service_form', locals: {form: form} ) %>");
+              });
+          </script>
+
+
+        </div>
+        <div class="modal-footer">
+          <%= form.form_group do %>
+            <%= form.primary 'Προσθήκη' %>
+            <h3 class="pull-right green sum">0€</h3>
+          <% end %>
+      <% end %>
+
+      </div>
+    </div><!-- modal-content -->
+
+  </div><!-- modal-dialog -->
+</div><!-- modal -->
+

@@ -75,6 +75,7 @@ module ApplicationHelper
       end
     end
   end
+
   def percent_tile(value, text)
     color = value > 0 ? 'green' : 'red'
     arrow = value > 0 ? 'fa fa-sort-asc' : 'fa fa-sort-desc'
@@ -86,6 +87,27 @@ module ApplicationHelper
       end)
       concat text
     end
+  end
+
+  def x_panel(title, small_title = '', collapsed = false, &block)
+    # capture the value of the block a string
+    content = capture(&block)
+
+    "<div class='x_panel'>
+      <div class='x_title'>
+        <h2>#{title}
+          <small>#{small_title}</small>
+        </h2>
+        <ul class='nav navbar-right panel_toolbox'>
+          <li><a class='collapse-link'><i class='fa fa-chevron-up'></i></a>
+          </li>
+        </ul>
+        <div class='clearfix'></div>
+      </div>
+      <div class='x_content' #{collapsed ? "style='display: none;'" : ''}'>
+        #{(content)}
+      </div>
+    </div>".html_safe
   end
 
 end

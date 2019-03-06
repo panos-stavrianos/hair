@@ -1,13 +1,17 @@
 <div class="x_panel">
   <div class="x_title">
     <h2 id="dd">Προσθήκη Υπηρεσιών και Προϊόντων</h2>
-    <h2 class="pull-right green sum">0€</h2>
+    <ul class='nav navbar-right panel_toolbox'>
+      <h2 class="green sum">0€</h2>
 
+      <li><a class='collapse-link'><i class='fa fa-chevron-up'></i></a>
+      </li>
+    </ul>
     <div class="clearfix"></div>
   </div>
-  <div class="x_content">
+  <div class="x_content" style='display: none;'>
 
-    <%= bootstrap_form_tag url: dashboard_index_path, html: {id: 'add_product_service_form'} do |form| %>
+    <%= bootstrap_form_tag url: products_services_path, html: {id: 'add_product_service_form'} do |form| %>
       <%= form.select(:customer_id, @customers.pluck(:name, :id),
                       {label: 'Επιλέξτε Πελάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
                       {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
@@ -65,10 +69,10 @@
 
       <script>
           $('#add_product').click(function () {
-              $('#new_products').append("<%= escape_javascript (render partial: 'dashboard/product_form', locals: {form: form} ,remote: true) %>");
+              $('#new_products').append("<%= escape_javascript (render partial: 'products_services/product_form', locals: {form: form} ,remote: true) %>");
           });
           $('#add_service').click(function () {
-              $('#new_services').append("<%= escape_javascript (render partial: 'dashboard/service_form', locals: {form: form} ) %>");
+              $('#new_services').append("<%= escape_javascript (render partial: 'products_services/service_form', locals: {form: form} ) %>");
           });
       </script>
 

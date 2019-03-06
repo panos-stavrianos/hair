@@ -21,7 +21,6 @@ $(document).on('turbolinks:load', function () {
                 function delayed() {
                     if (!execAsap)
                         func.apply(obj, args);
-                    timeout = null;
                 }
 
                 if (timeout)
@@ -5388,7 +5387,7 @@ $(document).on('turbolinks:load', function () {
     $(document).ready(function () {
 
         init_sparklines();
-        init_flot_chart();
+        //init_flot_chart();
         init_sidebar();
         init_wysiwyg();
         init_InputMask();
@@ -5405,14 +5404,14 @@ $(document).on('turbolinks:load', function () {
         init_daterangepicker_reservation();
         init_SmartWizard();
         init_EasyPieChart();
-        init_charts();
-        init_echarts();
-        init_morris_charts();
+        //init_charts();
+        //init_echarts();
+        //init_morris_charts();
         init_skycons();
         init_select2();
         init_validator();
         init_DataTables();
-        init_chart_doughnut();
+        //init_chart_doughnut();
         init_gauge();
         init_PNotify();
         init_starrr();

@@ -10,11 +10,11 @@ class ServicesController < ApplicationController
 
   def edit
     @records = Service.by_user(current_user)
-    @record = Service.find(params[:id])
+    @record = Service.by_user(current_user).find(params[:id])
   end
 
   def update
-    @record = Service.find(params[:id])
+    @record = Service.by_user(current_user).find(params[:id])
     if @record.update_attributes(service_params)
       redirect_to services_path
     else
@@ -23,13 +23,13 @@ class ServicesController < ApplicationController
   end
 
   def destroy
-    @record = Service.find(params[:id])
+    @record = Service.by_user(current_user).find(params[:id])
     @record.destroy
     redirect_to services_path
   end
 
   def toggle_enabled
-    @record = Service.find(params[:id])
+    @record = Service.by_user(current_user).find(params[:id])
     @record.toggle!(:enabled)
     redirect_to services_path
   end

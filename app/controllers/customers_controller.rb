@@ -15,11 +15,11 @@ class CustomersController < ApplicationController
 
   def edit
     @records = Customer.by_user(current_user)
-    @record = Customer.find(params[:id])
+    @record = Customer.by_user(current_user).find(params[:id])
   end
 
   def update
-    @record = Customer.find(params[:id])
+    @record = Customer.by_user(current_user).find(params[:id])
     if @record.update_attributes(customer_params)
       redirect_to customers_path
     else
@@ -28,7 +28,7 @@ class CustomersController < ApplicationController
   end
 
   def destroy
-    @record = Customer.find(params[:id])
+    @record = Customer.by_user(current_user).find(params[:id])
     @record.destroy
     redirect_to customers_path
   end

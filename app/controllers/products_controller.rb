@@ -11,11 +11,11 @@ class ProductsController < ApplicationController
 
   def edit
     @records = Product.by_user(current_user)
-    @record = Product.find(params[:id])
+    @record = Product.by_user(current_user).find(params[:id])
   end
 
   def update
-    @record = Product.find(params[:id])
+    @record = Product.by_user(current_user).find(params[:id])
     if @record.update_attributes(product_params)
       redirect_to products_path
     else
@@ -24,13 +24,13 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @record = Product.find(params[:id])
+    @record = Product.by_user(current_user).find(params[:id])
     @record.destroy
     redirect_to products_path
   end
 
   def toggle_enabled
-    @record = Product.find(params[:id])
+    @record = Product.by_user(current_user).find(params[:id])
     @record.toggle!(:enabled)
     redirect_to products_path
   end

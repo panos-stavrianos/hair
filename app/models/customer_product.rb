@@ -47,6 +47,14 @@ class CustomerProduct < ApplicationRecord
     "#{is_amount_one ? '' : (amount.to_s + '#')} #{actual_price}€  #{total_paid_s}"
   end
 
+  def discount_to_s
+    if discount.blank?
+      discount_per_cent.blank? ? "" : "#{discount_per_cent.round(0)}%"
+    else
+      [discount_per_cent.blank? ? "" : "#{discount_per_cent.round(0)}%", discount.name].reject(&:blank?).join(" ")
+    end
+  end
+
   def created_at_s
     timezone = Timezone['Europe/Athens']
     timezone.utc_to_local(created_at).strftime("%H:%M  %d/%m/%Y")

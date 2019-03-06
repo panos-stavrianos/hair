@@ -1,9 +1,7 @@
 {
   "name": "hair",
   "private": true,
-  "dependencies": {
-    "highcharts": "^6.2.0"
-  },
+  "dependencies": {},
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/panos-stavrianos/hair.git",

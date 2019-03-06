@@ -1,9 +1,3 @@
-<div class="x_panel">
-  <div class="x_title">
-    <h2>Πελάτες ανά φύλο</h2>
-    <div class="clearfix"></div>
-  </div>
-  <div class="x_content">
-    <%= pie_chart dashboard_customers_by_sex_path %>
-  </div>
-</div>
+<%= x_panel 'Πελάτες ανά φύλο' do %>
+  <%= pie_chart dashboard_customers_by_sex_path %>
+<% end %>

@@ -69,15 +69,16 @@ function set_sum() {
     if (!discount)
         discount = 0;
 
-    sum = (100 - discount) * sum / 100;
+    sum = ((100 - discount) * sum / 100).toFixed(2);
+
     $('.sum').text(`${sum}€`)
 }
 
 function init_MyDataTables() {
     $('#datatable-customer_products').DataTable({
-        "order": [4],
+        "order": [6],
         "columnDefs": [
-            {"width": "50px", "targets": [5], "orderable": false, "className": "text-center"}
+            {"width": "0px", "targets": [7, 8], "orderable": false, "className": "dt-center"}
         ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Greek.json"
@@ -85,9 +86,9 @@ function init_MyDataTables() {
     });
 
     $('#datatable-customer_services').DataTable({
-        "order": [5],
+        "order": [6],
         "columnDefs": [
-            {"width": "50px", "targets": [6], "orderable": false, "className": "text-center"}
+            {"width": "0px", "targets": [7, 8], "orderable": false, "className": "dt-center"}
         ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Greek.json"
@@ -96,7 +97,7 @@ function init_MyDataTables() {
     $('#datatable-customer_products_by_customer').DataTable({
         "order": [3],
         "columnDefs": [
-            {"width": "50px", "targets": [4], "orderable": false, "className": "text-center"}
+            {"width": "0px", "targets": [4], "orderable": false, "className": "dt-center"}
         ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Greek.json"
@@ -106,7 +107,7 @@ function init_MyDataTables() {
     $('#datatable-customer_services_by_customer').DataTable({
         "order": [4],
         "columnDefs": [
-            {"width": "50px", "targets": [5], "orderable": false, "className": "text-center"}
+            {"width": "0px", "targets": [5], "orderable": false, "className": "dt-center"}
         ],
         "language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Greek.json"
