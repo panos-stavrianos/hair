@@ -17,7 +17,8 @@
       </tr>
       </thead>
       <tbody>
-      <% @record.customer_services.each {|record| %>
+
+      <% @customer_services.each { |record| %>
         <tr>
           <%= row(record.service.to_s_name_description) %>
           <%= row(record.partner.to_s) %>

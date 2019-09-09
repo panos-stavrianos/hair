@@ -15,7 +15,7 @@
       </tr>
       </thead>
       <tbody>
-      <% @record.customer_products.each {|record| %>
+      <% @customer_products.each { |record| %>
         <tr>
           <%= row(record.product.to_s_name_description) %>
           <%= row_with_tooltip(record.amount_price,

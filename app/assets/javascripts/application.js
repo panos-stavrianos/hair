@@ -8,10 +8,11 @@
 //= require chartkick
 //= require bootstrap-select
 //= require moment
+//= require moment-timezone-with-data
 //= require bootstrap-datetimepicker
 //= require moment/el
 //= require gentelella-custom
-//= require dashboard
+//= require custom
 //= require turbolinks
 
 

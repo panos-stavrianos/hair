@@ -5245,19 +5245,50 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 //float right button
 .float {
   position: fixed;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   bottom: 70px;
-  right: 50px;
+  right: 0px;
   background-color: #0C9;
   color: #FFF;
-  border-radius: 50px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 80px;
+  border-bottom-left-radius: 90px;
   text-align: center;
   box-shadow: 2px 2px 3px #999;
 }
 
-.my-float {
-  font-size: 30px;
-  margin-top: 16px;
-  margin-left: 2px;
+.float:hover {
+  color: unset;
 }
+.my-float {
+  font-size: 22px;
+  margin-top: 15px;
+  margin-left: 1px;
+}
+
+.my-float:hover {
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+

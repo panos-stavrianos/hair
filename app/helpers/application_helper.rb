@@ -89,21 +89,36 @@ module ApplicationHelper
     end
   end
 
+  def regular_tile(value, text)
+    color = 'green'
+    content_tag :span, class: 'count_bottom' do
+      concat (content_tag :i, class: color do
+        concat "#{value} "
+      end)
+      concat text
+    end
+  end
+
   def x_panel(title, small_title = '', collapsed = false, &block)
     # capture the value of the block a string
     content = capture(&block)
 
     "<div class='x_panel'>
+
       <div class='x_title'>
-        <h2>#{title}
-          <small>#{small_title}</small>
-        </h2>
+        <a class='collapse-link'>
+
+          <h2>#{title}
+            <small>#{small_title}</small>
+          </h2>
+        </a>
         <ul class='nav navbar-right panel_toolbox'>
           <li><a class='collapse-link'><i class='fa fa-chevron-up'></i></a>
           </li>
         </ul>
         <div class='clearfix'></div>
       </div>
+
       <div class='x_content' #{collapsed ? "style='display: none;'" : ''}'>
         #{(content)}
       </div>

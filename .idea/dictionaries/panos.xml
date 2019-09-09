@@ -2,9 +2,13 @@
   <dictionary name="panos">
     <words>
       <w>autocomplete</w>
+      <w>datatables</w>
       <w>datepicker</w>
       <w>datetimepicker</w>
       <w>gentelella</w>
+      <w>glyphicon</w>
+      <w>inent</w>
+      <w>polyfit</w>
       <w>selectpicker</w>
     </words>
   </dictionary>

@@ -1,0 +1,13 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "customers.js", 'data-turbolinks-track' => true %>
+<% end %>
+
+
+<%= render 'customers/chart_test' %>
+
+<div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+  <%= render 'customers/table_services' %>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12 pull-right">
+  <%= render 'customers/table_products' %>
+</div>

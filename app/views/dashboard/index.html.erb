@@ -1,3 +1,6 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "dashboard.js", 'data-turbolinks-track' => true %>
+<% end %>
 <%= render 'dashboard/total_tiles' %>
 <div class="col-md-6 col-sm-6 col-xs-12 ">
   <%= render 'dashboard/charts/by_service' %>

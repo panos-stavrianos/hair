@@ -7,7 +7,7 @@ $(document).on('turbolinks:load', function () {
      *     // code here
      * });
      */
-    console.log("turbolinks:load gentelela");
+    //console.log("turbolinks:load gentelela");
 
     (function ($, sr) {
         // debouncing function from John Hann
@@ -66,7 +66,6 @@ $(document).on('turbolinks:load', function () {
         var height = Math.max(body.scrollHeight, body.offsetHeight,
             html.clientHeight, html.scrollHeight, html.offsetHeight);
         contentHeight = height + $FOOTER.height() + 50;
-        console.log("contentHeight: " + contentHeight);
         $RIGHT_COL.css('min-height', contentHeight);
     };
 
@@ -80,7 +79,7 @@ $(document).on('turbolinks:load', function () {
 
 
         $SIDEBAR_MENU.find('a').on('click', function (ev) {
-            console.log('clicked - sidebar_menu');
+            //console.log('clicked - sidebar_menu');
             var $li = $(this).parent();
 
             if ($li.is('.active')) {
@@ -120,7 +119,7 @@ $(document).on('turbolinks:load', function () {
 
 // toggle small or large menu
         $MENU_TOGGLE.on('click', function () {
-            console.log('clicked - menu toggle');
+            //console.log('clicked - menu toggle');
 
             if ($BODY.hasClass('nav-md')) {
                 $SIDEBAR_MENU.find('li.active ul').hide();
@@ -369,7 +368,7 @@ $(document).on('turbolinks:load', function () {
             return;
         }
 
-        console.log('init_flot_chart');
+        //console.log('init_flot_chart');
 
 
         var arr_data1 = [
@@ -574,14 +573,14 @@ $(document).on('turbolinks:load', function () {
 
 
         if ($("#chart_plot_01").length) {
-            console.log('Plot1');
+            //console.log('Plot1');
 
             $.plot($("#chart_plot_01"), [arr_data1, arr_data2], chart_plot_01_settings);
         }
 
 
         if ($("#chart_plot_02").length) {
-            console.log('Plot2');
+            //console.log('Plot2');
 
             $.plot($("#chart_plot_02"),
                 [{
@@ -598,7 +597,7 @@ $(document).on('turbolinks:load', function () {
         }
 
         if ($("#chart_plot_03").length) {
-            console.log('Plot3');
+            //console.log('Plot3');
 
 
             $.plot($("#chart_plot_03"), [{
@@ -623,7 +622,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof (starrr) === 'undefined') {
             return;
         }
-        console.log('init_starrr');
+        //console.log('init_starrr');
 
         $(".stars").starrr();
 
@@ -649,7 +648,7 @@ $(document).on('turbolinks:load', function () {
             return;
         }
 
-        console.log('init_JQVmap');
+        //console.log('init_JQVmap');
 
         if ($('#world-map-gdp').length) {
 
@@ -692,7 +691,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof (Skycons) === 'undefined') {
             return;
         }
-        console.log('init_skycons');
+        //console.log('init_skycons');
 
         var icons = new Skycons({
                 "color": "#73879C"
@@ -718,7 +717,7 @@ $(document).on('turbolinks:load', function () {
             return;
         }
 
-        console.log('init_chart_doughnut');
+        //console.log('init_chart_doughnut');
 
         if ($('.canvasDoughnut').length) {
 
@@ -774,9 +773,9 @@ $(document).on('turbolinks:load', function () {
             return;
         }
 
-        console.log('init_gauge [' + $('.gauge-chart').length + ']');
+        //console.log('init_gauge [' + $('.gauge-chart').length + ']');
 
-        console.log('init_gauge');
+        //console.log('init_gauge');
 
 
         var chart_gauge_settings = {
@@ -840,7 +839,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof (jQuery.fn.sparkline) === 'undefined') {
             return;
         }
-        console.log('init_sparklines');
+        //console.log('init_sparklines');
 
 
         $(".sparkline_one").sparkline([2, 4, 3, 4, 5, 4, 5, 4, 3, 4, 5, 6, 4, 5, 6, 3, 5, 4, 5, 4, 5, 4, 3, 4, 5, 6, 7, 5, 4, 3, 5, 6], {
@@ -959,7 +958,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof (autocomplete) === 'undefined') {
             return;
         }
-        console.log('init_autocomplete');
+        //console.log('init_autocomplete');
 
         var countries = {
             AD: "Andorra",
@@ -1265,7 +1264,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof (parsley) === 'undefined') {
             return;
         }
-        console.log('init_parsley');
+        //console.log('init_parsley');
 
         $/*.listen*/('parsley:field:validate', function () {
             validateFront();
@@ -1343,7 +1342,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof (select2) === 'undefined') {
             return;
         }
-        console.log('init_toolbox');
+        //console.log('init_toolbox');
 
         $(".select2_single").select2({
             placeholder: "Select a state",
@@ -1365,7 +1364,8 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.wysiwyg) === 'undefined') {
             return;
         }
-        console.log('init_wysiwyg');
+
+        //console.log('init_wysiwyg');
 
         function init_ToolbarBootstrapBindings() {
             var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
@@ -1442,7 +1442,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.cropper) === 'undefined') {
             return;
         }
-        console.log('init_cropper');
+        //console.log('init_cropper');
 
         var $image = $('#image');
         var $download = $('#download');
@@ -1678,7 +1678,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.knob) === 'undefined') {
             return;
         }
-        console.log('init_knob');
+        //console.log('init_knob');
 
         $(".knob").knob({
             change: function (value) {
@@ -1786,7 +1786,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.inputmask) === 'undefined') {
             return;
         }
-        console.log('init_InputMask');
+        //console.log('init_InputMask');
 
         $(":input").inputmask();
 
@@ -1799,7 +1799,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.colorpicker) === 'undefined') {
             return;
         }
-        console.log('init_ColorPicker');
+        //console.log('init_ColorPicker');
 
         $('.demo1').colorpicker();
         $('.demo2').colorpicker();
@@ -1824,7 +1824,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.ionRangeSlider) === 'undefined') {
             return;
         }
-        console.log('init_IonRangeSlider');
+        //console.log('init_IonRangeSlider');
 
         $("#range_27").ionRangeSlider({
             type: "double",
@@ -1896,7 +1896,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.daterangepicker) === 'undefined') {
             return;
         }
-        console.log('init_daterangepicker');
+        //console.log('init_daterangepicker');
 
         var cb = function (start, end, label) {
             console.log(start.toISOString(), end.toISOString(), label);
@@ -1973,7 +1973,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.daterangepicker) === 'undefined') {
             return;
         }
-        console.log('init_daterangepicker_right');
+        //console.log('init_daterangepicker_right');
 
         var cb = function (start, end, label) {
             console.log(start.toISOString(), end.toISOString(), label);
@@ -2055,7 +2055,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.daterangepicker) === 'undefined') {
             return;
         }
-        console.log('init_daterangepicker_single_call');
+        //console.log('init_daterangepicker_single_call');
 
         $('#single_cal1').daterangepicker({
             singleDatePicker: true,
@@ -2091,7 +2091,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.daterangepicker) === 'undefined') {
             return;
         }
-        console.log('init_daterangepicker_reservation');
+        //console.log('init_daterangepicker_reservation');
 
         $('#reservation').daterangepicker(null, function (start, end, label) {
             console.log(start.toISOString(), end.toISOString(), label);
@@ -2114,7 +2114,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.smartWizard) === 'undefined') {
             return;
         }
-        console.log('init_SmartWizard');
+        //console.log('init_SmartWizard');
 
         $('#wizard').smartWizard();
 
@@ -2135,7 +2135,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof (validator) === 'undefined') {
             return;
         }
-        console.log('init_validator');
+        //console.log('init_validator');
 
         // initialize the validator function
         validator.message.date = 'not a real date';
@@ -2174,7 +2174,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof (PNotify) === 'undefined') {
             return;
         }
-        console.log('init_PNotify');
+        //console.log('init_PNotify');
 
         new PNotify({
             title: "PNotify",
@@ -2204,12 +2204,12 @@ $(document).on('turbolinks:load', function () {
 
     function init_CustomNotification() {
 
-        console.log('run_customtabs');
+        //console.log('run_customtabs');
 
         if (typeof (CustomTabs) === 'undefined') {
             return;
         }
-        console.log('init_CustomTabs');
+        //console.log('init_CustomTabs');
 
         var cnt = 10;
 
@@ -2266,7 +2266,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.easyPieChart) === 'undefined') {
             return;
         }
-        console.log('init_EasyPieChart');
+        //console.log('init_EasyPieChart');
 
         $('.chart').easyPieChart({
             easing: 'easeOutElastic',
@@ -2328,7 +2328,7 @@ $(document).on('turbolinks:load', function () {
             return;
         }
 
-        console.log('init_charts');
+        //console.log('init_charts');
 
 
         Chart.defaults.global.legend = {
@@ -2731,7 +2731,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.slideToggle) === 'undefined') {
             return;
         }
-        console.log('init_compose');
+        //console.log('init_compose');
 
         $('#compose, .compose-close').click(function () {
             $('.compose').slideToggle();
@@ -2746,7 +2746,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof ($.fn.fullCalendar) === 'undefined') {
             return;
         }
-        console.log('init_calendar');
+        //console.log('init_calendar');
 
         var date = new Date(),
             d = date.getDate(),
@@ -2848,12 +2848,12 @@ $(document).on('turbolinks:load', function () {
 
     function init_DataTables() {
 
-        console.log('run_datatables');
+        //console.log('run_datatables');
 
         if (typeof ($.fn.DataTable) === 'undefined') {
             return;
         }
-        console.log('init_DataTables');
+        //console.log('init_DataTables');
 
         var handleDataTableButtons = function () {
             if ($("#datatable-buttons").length) {
@@ -2954,7 +2954,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof (Morris) === 'undefined') {
             return;
         }
-        console.log('init_morris_charts');
+        //console.log('init_morris_charts');
 
         if ($('#graph_bar').length) {
 
@@ -3114,7 +3114,7 @@ $(document).on('turbolinks:load', function () {
         if (typeof (echarts) === 'undefined') {
             return;
         }
-        console.log('init_echarts');
+        //console.log('init_echarts');
 
 
         var theme = {

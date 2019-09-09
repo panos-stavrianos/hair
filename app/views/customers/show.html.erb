@@ -1,14 +1,10 @@
+<%= render 'customers/customer_tiles' %>
+
 <ul class="nav navbar-nav navbar-right" style="margin-bottom: 5px;">
   <%= bootstrap_form_tag url: dashboard_index_path, html: {id: 'add_product_service_form'} do |f| %>
     <%= f.text_field :date_range, data: {provide: 'datepicker'}, class: 'date_range', label: "Εύρος αναζήτησης" %>
   <% end %>
 </ul>
-
-<%= render 'customers/chart_test' %>
-
-<div class="col-md-6 col-sm-6 col-xs-12 pull-right">
-  <%= render 'customers/table_services' %>
-</div>
-<div class="col-md-6 col-sm-6 col-xs-12 pull-right">
-  <%= render 'customers/table_products' %>
+<div id="show_content">
+  <%= render 'customers/show_content' %>
 </div>
