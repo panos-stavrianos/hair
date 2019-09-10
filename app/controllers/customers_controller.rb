@@ -159,12 +159,10 @@ class CustomersController < ApplicationController
 
   def predict_next_visit
     model = ML::Regress.new
-
-    print model.regress([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                        [1, 6, 17, 34, 57, 86, 121, 162, 209, 262, 321],
-                        2)
     visits = @record.customer_services.distinct.order(created_at: :asc).pluck(:created_at)
-
+    if visits.length<5
+      return {next_visit: "unknown", in_days: "unknown"}
+    end
     y = visits.map do |record, i|
       ((record - visits[0]).to_i / 1.day)
     end

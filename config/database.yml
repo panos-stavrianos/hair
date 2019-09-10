@@ -53,13 +53,6 @@ test:
 #
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
-#production:
-#  <<: *default
-#  url: <%=  ENV['CLEARDB_DATABASE_URL'] %>
-
-
 production:
   <<: *default
-  database: hair_development
-  username: hair
-  password: <%= ENV['DB_PASSWORD'] %>
+  url: <%=  ENV['CLEARDB_DATABASE_URL'] %>
