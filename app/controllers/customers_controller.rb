@@ -1,4 +1,6 @@
 class CustomersController < ApplicationController
+  require 'ml'
+
   def index
     @records = Customer.by_user(current_user)
   end
