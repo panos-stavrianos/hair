@@ -1,0 +1,1 @@
+window.ParsleyConfig=window.ParsleyConfig||{},window.ParsleyConfig.validators=window.ParsleyConfig.validators||{},window.ParsleyConfig.validators.luhn={fn:function(i){var r,n,o,a,e,l=0;for(n=o=0,a=(e=(i=i.replace(/[ -]/g,"")).split("").reverse()).length;o<a;n=++o)r=+(r=e[n]),l+=n%2?(r*=2)<10?r:r-9:r;return l%10==0},priority:32};

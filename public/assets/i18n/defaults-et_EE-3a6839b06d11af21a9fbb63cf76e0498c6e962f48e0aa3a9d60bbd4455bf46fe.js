@@ -1,0 +1,1 @@
+jQuery.fn.selectpicker.defaults={noneSelectedText:"Valikut pole tehtud",noneResultsText:"Otsingule {0} ei ole vasteid",countSelectedText:function(e){return 1==e?"{0} item selected":"{0} items selected"},maxOptionsText:function(){return["Limiit on {n} max","Globaalne limiit on {n} max"]},selectAllText:"Vali k\xf5ik",deselectAllText:"T\xfchista k\xf5ik",multipleSeparator:", "};

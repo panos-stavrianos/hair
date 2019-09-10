@@ -1,0 +1,1 @@
+jQuery.fn.selectpicker.defaults={noneSelectedText:"No hay selecci\xf3n",noneResultsText:"No hay resultados {0}",countSelectedText:"Seleccionados {0} de {1}",maxOptionsText:["L\xedmite alcanzado ({n} {var} max)","L\xedmite del grupo alcanzado({n} {var} max)",["elementos","element"]],multipleSeparator:", ",selectAllText:"Seleccionar Todos",deselectAllText:"Desmarcar Todos"};
