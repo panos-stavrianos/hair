@@ -1,7 +1,9 @@
 class Expense < ApplicationRecord
   belongs_to :user
 
-  scope :by_user, ->(current_user) {where(user: current_user).order(name: :desc)}
+  scope :by_user, ->(current_user) { where(user: current_user).order(name: :desc) }
+  scope :by_user_no_order, ->(current_user) { where(user: current_user) }
+
   before_save :price_validation, :time_zone_fix
 
   def create_with_user(current_user)

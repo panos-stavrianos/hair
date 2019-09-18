@@ -10,8 +10,6 @@ function refresh_by_range(s, e, l) {
 
     $.post(location.pathname, data_j, function (response) {
         $("#show_content").html(response);
-        clear_datatables_list();
-        init_MyDataTables();
     });
     if (l === "All") {
         set_all_DaterRangePicker()
@@ -21,12 +19,13 @@ function refresh_by_range(s, e, l) {
 
 $(document).on('turbolinks:load', function () {
     console.log(":load customer");
+    refresh_by_range(start, end, "All");
     init_MyDaterRangePicker(refresh_by_range);
 });
 
 $(document).ready(function () {
     console.log(":ready customers");
-    init_MyDaterRangePicker(refresh_by_range);
-
+    // refresh_by_range(start, end, "All");
+    // init_MyDaterRangePicker(refresh_by_range);
 });
 

@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'dashboard#index'
-  resources :dashboard
-  post 'dashboard' => 'dashboard#render_product_partial_form'
+  resources :dashboard, :only => [:index]
+  get 'dashboard/create_form_modal(.:format)' => 'dashboard#create_form_modal', as: 'create_form_modal'
 
   resources :products_services
 
@@ -47,6 +47,9 @@ Rails.application.routes.draw do
   #path for charts
   get 'customer/products_services_by_day/:id/:range(.:format)' => 'customers#products_services_by_day', as: "customer_products_services_by_day"
   get 'dashboard_index/products_services_by_day' => 'dashboard#products_services_by_day', as: "dashboard_products_services_by_day"
+  get 'dashboard_index/products_services_by_week' => 'dashboard#products_services_by_week', as: "dashboard_products_services_by_week"
   get 'dashboard_index/customers_by_sex' => 'dashboard#customers_by_sex', as: "dashboard_customers_by_sex"
   get 'dashboard_index/by_service' => 'dashboard#by_service', as: "dashboard_by_service"
+
+
 end

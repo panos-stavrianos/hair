@@ -1,3 +1,6 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "customers.js", 'data-turbolinks-track' => true %>
+<% end %>
 <%= render 'customers/customer_tiles' %>
 
 <ul class="nav navbar-nav navbar-right" style="margin-bottom: 5px;">
@@ -5,6 +8,4 @@
     <%= f.text_field :date_range, data: {provide: 'datepicker'}, class: 'date_range', label: "Εύρος αναζήτησης" %>
   <% end %>
 </ul>
-<div id="show_content">
-  <%= render 'customers/show_content' %>
-</div>
+<div id="show_content"></div>

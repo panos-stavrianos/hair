@@ -1,7 +1,10 @@
+require 'datatables/expenses_datatable'
+
 class ExpensesController < ApplicationController
 
   def index
     @records = Expense.by_user(current_user)
+    @expenses_datatable = ExpensesDatatable.new(user_id: current_user)
   end
 
   def create
@@ -12,6 +15,7 @@ class ExpensesController < ApplicationController
   def edit
     @records = Expense.by_user(current_user)
     @record = Expense.by_user(current_user).find(params[:id])
+    @expenses_datatable = ExpensesDatatable.new(user_id: current_user)
   end
 
   def update

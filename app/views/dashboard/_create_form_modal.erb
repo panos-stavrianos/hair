@@ -9,10 +9,7 @@
         <h4 class="modal-title" id="myModalLabel2">Προσθέστε συναλλαγή</h4>
       </div>
       <%= bootstrap_form_tag url: products_services_path, html: {id: 'add_product_service_form'} do |form| %>
-
         <div class="modal-body">
-
-
           <%= form.select(:customer_id, @customers.pluck(:name, :id),
                           {label: 'Επιλέξτε Πελάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
                           {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
@@ -20,19 +17,15 @@
                           {label: 'Επιλέξτε Συνεργάτη', :prompt => 'Δεν έχει επιλεγεί κάποιος'},
                           {class: 'selectpicker form-control', 'data-live-search' => 'true', :required => ''}) %>
           <div class="col-sm-9">
-            <%= form.select(:discount_id, @discounts.collect {|p| [p, p.id, data: {'percent': p.per_cent}]},
+            <%= form.select(:discount_id, @discounts.collect { |p| [p, p.id, data: {'percent': p.per_cent}] },
                             {label: 'Επιλέξτε Έκπτωση', :prompt => 'Δεν έχει επιλεγεί κάποια'},
                             {class: 'selectpicker', 'data-live-search' => 'true'}) %>
           </div>
-
           <%= form.number_field :discount_per_cent, label: 'Έκπτωση',
                                 data: {toggle: 'tooltip'},
                                 min: '0', max: '100',
                                 wrapper: {class: 'col-sm-3'} %>
-
-
           <%= datepicker_input(form, :created_at) %>
-
           <hr>
           <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel">
@@ -67,16 +60,14 @@
             </div>
           </div>
 
-
           <script>
               $('#add_product').click(function () {
-                  $('#new_products').append("<%= escape_javascript (render partial: 'products_services/product_form', locals: {form: form} ,remote: true) %>");
+                  $('#new_products').append("<%= escape_javascript(render partial: 'products_services/product_form', locals: {form: form} ,remote: true) %>");
               });
               $('#add_service').click(function () {
-                  $('#new_services').append("<%= escape_javascript (render partial: 'products_services/service_form', locals: {form: form} ) %>");
+                  $('#new_services').append("<%= escape_javascript(render partial: 'products_services/service_form', locals: {form: form},remote: true ) %>");
               });
           </script>
-
 
         </div>
         <div class="modal-footer">

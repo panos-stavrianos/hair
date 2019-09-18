@@ -1,6 +1,10 @@
+require 'datatables/services_datatable'
+
 class ServicesController < ApplicationController
+
   def index
     @records = Service.by_user(current_user)
+    @services_datatable = ServicesDatatable.new(user_id: current_user)
   end
 
   def create
@@ -11,6 +15,7 @@ class ServicesController < ApplicationController
   def edit
     @records = Service.by_user(current_user)
     @record = Service.by_user(current_user).find(params[:id])
+    @services_datatable = ServicesDatatable.new(user_id: current_user)
   end
 
   def update

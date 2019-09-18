@@ -1,0 +1,1 @@
+(function(){var n;n=function(){if(document.location.hash.length>0)return $(".nav.nav-tabs").find("a[href='"+document.location.hash+"']").tab("show")},$(function(){return n()}),$(document).on("turbolinks:load",function(){return n()})}).call(this);

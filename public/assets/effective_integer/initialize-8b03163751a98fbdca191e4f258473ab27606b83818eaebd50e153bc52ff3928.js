@@ -1,0 +1,1 @@
+(function(){$(document).on("keydown","input.effective_integer",function(e){var n;if(n=["0","1","2","3","4","5","6","7","8","9"],e.key&&1===e.key.length&&!1===e.metaKey&&-1===n.indexOf(e.key))return e.preventDefault()})}).call(this);

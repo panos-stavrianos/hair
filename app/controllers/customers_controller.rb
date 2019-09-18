@@ -1,33 +1,40 @@
+require 'datatables/customers_datatable'
+require 'datatables/services_by_customer_datatable'
+require 'datatables/products_by_customer_datatable'
+
 class CustomersController < ApplicationController
   require 'ml'
 
   def index
     @records = Customer.by_user(current_user)
+    @customers_datatable = CustomersDatatable.new(user_id: current_user)
   end
 
   def show
     @record = Customer.by_user(current_user).find(params[:id])
-    @customer_services = @record.customer_services
-    @customer_products = @record.customer_products
+    @services_by_customer_datatable = ServicesByCustomerDatatable.new(user_id: current_user, range: between_where(@range), customer: @record)
+    @products_by_customer_datatable = ProductsByCustomerDatatable.new(user_id: current_user, range: between_where(@range), customer: @record)
     tiles
   end
 
   def between_where(range)
-    if range[:start] == ""
-      {}
-    else
-      s = DateTime.strptime((range[:start].to_f / 1000).to_s, '%s')
-      e = DateTime.strptime((range[:end].to_f / 1000).to_s, '%s')
-      {:created_at => s..e}
+    if not range or range[:start] == ""
+      range = {}
+      range[:start] = 0
+      range[:end] = Time.now.to_i * 1000
+      print "between_where none:" + range.to_s
     end
 
+    s = DateTime.strptime((range[:start].to_f / 1000).to_s, '%s')
+    e = DateTime.strptime((range[:end].to_f / 1000).to_s, '%s')
+    {:created_at => s..e}
   end
 
   def show_range
     @record = Customer.by_user(current_user).find(params[:id])
     @range = {start: params[:start], end: params[:end], label: params[:label]}
-    @customer_services = @record.customer_services.where(between_where(@range))
-    @customer_products = @record.customer_products.where(between_where(@range))
+    @services_by_customer_datatable = ServicesByCustomerDatatable.new(user_id: current_user, range: between_where(@range), customer: @record)
+    @products_by_customer_datatable = ProductsByCustomerDatatable.new(user_id: current_user, range: between_where(@range), customer: @record)
     tiles
     render partial: 'customers/show_content'
   end
@@ -40,6 +47,7 @@ class CustomersController < ApplicationController
   def edit
     @records = Customer.by_user(current_user)
     @record = Customer.by_user(current_user).find(params[:id])
+    @customers_datatable = CustomersDatatable.new(user_id: current_user)
   end
 
   def update
@@ -63,9 +71,29 @@ class CustomersController < ApplicationController
 
     @range = Rack::Utils.parse_nested_query(params[:range]).symbolize_keys
     print @range
+    dates = []
+
+    if @range[:label] == "All"
+      predictions = predict_next_visits(3)
+      if predictions
+        predictions = predictions.map { |p| p[:next_visit].to_date }
+        start_date = Time.now
+        end_date = predictions[-1]
+        start_date.to_date.upto(end_date.to_date) do |date|
+          if predictions.include? date
+            dates.append([date.strftime("%B %d, %Y"), 1])
+          else
+            dates.append([date.strftime("%B %d, %Y"), 0])
+          end
+        end
+      end
+    end
+    predictions = {name: "Predict", data: dates}
+
     response = [
         {name: "Services", data: @record.customer_services.where(between_where(@range)).group_by_day(:created_at, format: "%B %d, %Y").count},
-        {name: "Products", data: @record.customer_products.where(between_where(@range)).group_by_day(:created_at, format: "%B %d, %Y").count}
+        {name: "Products", data: @record.customer_products.where(between_where(@range)).group_by_day(:created_at, format: "%B %d, %Y").count},
+        predictions
     ]
     render json: response
   end
@@ -88,7 +116,12 @@ class CustomersController < ApplicationController
     av_services = (services.to_f / months_active.to_f).round(2)
     products = @record.customer_products.count
     av_products = (products.to_f / months_active.to_f).round(2)
-    prediction = predict_next_visit
+    predictions = predict_next_visits(0)
+    if predictions.nil?
+      prediction = {next_visit: "unknown", in_days: "unknown"}
+    else
+      prediction = predictions[0]
+    end
     @tiles = {
         :months_active => months_active,
         :visits => visits,
@@ -104,64 +137,11 @@ class CustomersController < ApplicationController
     }
   end
 
-  def predict_next_visit2
-    visits = @record.customer_services.distinct.order(created_at: :asc).pluck(:created_at)
-
-    data = visits.each_with_index.map do |record, i|
-      {visit: i, day_diff: (record - visits[0]).to_i / 1.day}
-    end
-    model = Eps::Model.new(data, target: :day_diff, algorithm: :linear_regression)
-    actual = data[-1][:day_diff]
-    prediction = model.predict(visit: data.length - 1)
-    print actual
-    print "\n"
-    print prediction
-    Eps.metrics(actual, prediction)
-
-
-    print model.summary
-    in_days = model.predict(visit: data.length).days
-    next_visit = visits[0] + in_days
-    {next_visit: visits[0] + in_days, in_days: (next_visit - Time.now).to_i / 1.day}
-  end
-
-  def predict_next_visit3
-    visits = @record.customer_services.distinct.order(created_at: :asc).pluck(:created_at)
-    y = visits.map do |record, i|
-      ((record - visits[0]).to_i / 1.day)
-    end
-    x = []
-    for i in 0..(y.length - 1)
-      x.push([i])
-    end
-    print x
-    print "\n"
-    print y
-    print "\n"
-    linear_regression = RubyLinearRegression.new
-    # Load training data
-    linear_regression.load_training_data(x, y)
-    # Train the model using the normal equation
-    #linear_regression.train_normal_equation
-    linear_regression.train_normal_equation
-
-    p = x.map do |x_p|
-      predicted = linear_regression.predict(x_p)
-      predicted.round
-    end
-    print p
-    print "\n"
-
-    in_days = linear_regression.predict([y.length]).days
-    next_visit = visits[0] + in_days
-    {next_visit: visits[0] + in_days, in_days: (next_visit - Time.now).to_i / 1.day}
-  end
-
-  def predict_next_visit
+  def build_model
     model = ML::Regress.new
     visits = @record.customer_services.distinct.order(created_at: :asc).pluck(:created_at)
-    if visits.length<5
-      return {next_visit: "unknown", in_days: "unknown"}
+    if visits.length < 5
+      return nil
     end
     y = visits.map do |record, i|
       ((record - visits[0]).to_i / 1.day)
@@ -171,23 +151,24 @@ class CustomersController < ApplicationController
     for i in 0..(y.length - 1)
       x.push(i)
     end
-    print x
-    print "\n"
-    print y
-    print "\n"
+
     # Load training data
     model.regress(x, y, 2)
+    [visits[0], model]
+  end
 
-    p = x.map do |x_p|
-      predicted = model.predict(x_p)
-      predicted.round
+  def predict_next_visits(n)
+    (first_visit, model) = build_model
+    if first_visit.nil?
+      return nil
     end
-    print p
-    print "\n"
-
-    in_days = model.predict(y.length).days
-    next_visit = visits[0] + in_days
-    {next_visit: visits[0] + in_days, in_days: (next_visit - Time.now).to_i / 1.day}
+    predictions = []
+    (0..n).each { |i|
+      in_days = model.predict_in_future(i).days
+      next_visit = first_visit + in_days
+      predictions.push({next_visit: first_visit + in_days, in_days: (next_visit - Time.now).to_i / 1.day})
+    }
+    predictions
   end
 
 

@@ -2,7 +2,8 @@ class Service < ApplicationRecord
   belongs_to :user
   has_many :customer_services, :dependent => :restrict_with_error
   has_many :customers, through: :customer_services, :dependent => :restrict_with_error
-  scope :by_user, ->(current_user) {where(user: current_user).order(name: :desc)}
+  scope :by_user, ->(current_user) { where(user: current_user).order(name: :desc) }
+  scope :by_user_no_order, ->(current_user) { where(user: current_user) }
   before_save :price_validation
 
   def create_with_user(current_user)

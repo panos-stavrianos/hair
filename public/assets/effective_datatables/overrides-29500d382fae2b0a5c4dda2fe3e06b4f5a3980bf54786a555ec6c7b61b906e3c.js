@@ -1,0 +1,1 @@
+(function(){$.extend(!0,$.fn.dataTable.Buttons.defaults,{dom:{button:{className:"btn btn-link btn-sm"}}})}).call(this);

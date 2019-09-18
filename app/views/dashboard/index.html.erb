@@ -7,9 +7,8 @@
 </div>
 
 <div class="col-md-6 col-sm-6 col-xs-12 ">
-  <%= render 'dashboard/charts/products_services_by_day' %>
+  <%= render 'dashboard/charts/products_services_by_week' %>
 </div>
-
 <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12 pull-right">
   <%= render 'products_services/services_table' %>
 </div>
@@ -18,8 +17,7 @@
   <%= render 'products_services/products_table' %>
 </div>
 
-<%= render 'dashboard/create_form_modal' %>
-
+<div id="form_modal"></div>
 <a data-toggle="modal" data-target="#create_customer_product_service_modal" class="float">
   <i class="fa fa-plus my-float"></i>
 </a>

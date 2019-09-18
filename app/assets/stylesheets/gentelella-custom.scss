@@ -308,7 +308,7 @@ html, body {
 }
 
 .profile_pic {
-  width: 35%;
+  width: 100%;
   float: left
 }
 
@@ -324,11 +324,12 @@ html, body {
 }
 
 .profile_info {
-  padding: 25px 10px 10px;
-  width: 65%;
-  float: left
+  padding-left: 10px;
+  //width: 65%;
+  //float: left
 }
-
+rails generate migration RemoveAvatarFromUser
+rails generate migration RemoveAvatarFromUser
 .profile_info span {
   font-size: 13px;
   line-height: 30px;
@@ -5261,6 +5262,7 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 .float:hover {
   color: unset;
 }
+
 .my-float {
   font-size: 22px;
   margin-top: 15px;

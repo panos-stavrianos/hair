@@ -1,0 +1,1 @@
+(function(){$(document).on("click","a[data-apply-effective-datatables-filters]",function(t){var a;return t.preventDefault(),a=$(t.currentTarget).closest(".effective-datatables-filters"),$("#"+a.attr("aria-controls")).DataTable().draw()})}).call(this);

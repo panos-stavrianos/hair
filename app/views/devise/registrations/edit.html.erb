@@ -11,10 +11,10 @@
         <%= devise_error_messages! %>
         <div class="form-group">
           <div class="control-label col-md-3 col-sm-3 col-xs-12">
-            <%= image_tag(current_user.avatar.url(:medium), class: "upload_avatar") %>
+            <%= image_tag current_user.avatar.variant(resize: "100x100") if current_user.avatar.attached? %>
           </div>
           <div class="col-md-6 col-sm-6 col-xs-12">
-            <%= f.file_field :avatar, class: "col-md-7 col-xs-12" %>
+            <%= f.file_field :avatar, direct_upload: true, class: "col-md-7 col-xs-12" %>
           </div>
         </div>
 

@@ -1,6 +1,10 @@
+require 'datatables/partners_datatable'
+
 class PartnersController < ApplicationController
+
   def index
     @records = Partner.by_user(current_user)
+    @partners_datatable = PartnersDatatable.new(user_id: current_user)
   end
 
   def create
@@ -11,6 +15,7 @@ class PartnersController < ApplicationController
   def edit
     @records = Partner.by_user(current_user)
     @record = Partner.by_user(current_user).find(params[:id])
+    @partners_datatable = PartnersDatatable.new(user_id: current_user)
   end
 
   def update

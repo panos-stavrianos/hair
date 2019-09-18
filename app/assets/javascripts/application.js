@@ -1,3 +1,4 @@
+//= require activestorage
 //= require gentelella
 //= stub Chart.min
 //= stub echarts
@@ -10,6 +11,8 @@
 //= require moment
 //= require moment-timezone-with-data
 //= require bootstrap-datetimepicker
+//= require buttons.colVis.min
+//= require effective_datatables
 //= require moment/el
 //= require gentelella-custom
 //= require custom

@@ -16,9 +16,10 @@ default: &default
 
 development:
   <<: *default
-  database: hair_development
-  username: hair
-  password: <%= ENV['DB_PASSWORD'] %>
+  url: <%=  ENV['CLEARDB_DATABASE_URL'] %>
+#  database: hair_development
+#  username: hair
+#  password: <%= ENV['DB_PASSWORD'] %>
 #  socket: /var/run/mysqld/mysqld.sock
 
 

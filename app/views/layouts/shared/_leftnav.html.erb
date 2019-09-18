@@ -2,15 +2,17 @@
   <div class="left_col scroll-view">
     <div class="navbar nav_title" style="border: 0;">
       <a href="/" class="site_title">
+        <%= image_tag :hair_flair, class: 'img-horizontal site_img' %>
       </a>
     </div>
 
 
     <div class="navbar profile">
-      <div class="profile_pic">
-        <%= image_tag(current_user.avatar.url(:medium), class: "img-circle profile_img") %>
-      </div>
+
       <div class="profile_info">
+        <div class="profile_pic">
+          <%= image_tag current_user.avatar.variant(resize: "60x60") if current_user.avatar.attached? %>
+        </div>
         <span>Καλωσόρισες,</span>
         <h2><%= current_user.username %></h2>
       </div>

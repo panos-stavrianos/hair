@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_120906) do
+ActiveRecord::Schema.define(version: 2019_09_18_212916) do
+
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "customer_products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "customer_id"
@@ -130,10 +151,6 @@ ActiveRecord::Schema.define(version: 2018_10_24_120906) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "avatar_file_name"
-    t.string "avatar_content_type"
-    t.integer "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.boolean "admin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -142,9 +159,9 @@ ActiveRecord::Schema.define(version: 2018_10_24_120906) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
 
   create_view "tiles", sql_definition: <<-SQL
       select 'all_customers' AS `inent`,count(0) AS `count`,0 AS `sum`,`customers`.`user_id` AS `user_id` from `customers` group by `customers`.`user_id` union select 'this_week_customers' AS `inent`,count(0) AS `count`,0 AS `sum`,`customers`.`user_id` AS `user_id` from `customers` where (yearweek(`customers`.`created_at`,0) = yearweek(curdate(),0)) group by `customers`.`user_id` union select 'this_week_products' AS `inent`,count(0) AS `count`,sum((`customer_products`.`price` * `customer_products`.`amount`)) AS `sum`,`customer_products`.`user_id` AS `user_id` from `customer_products` where (yearweek(`customer_products`.`created_at`,0) = yearweek(curdate(),0)) group by `customer_products`.`user_id` union select 'last_week_products' AS `inent`,count(0) AS `count`,sum((`customer_products`.`price` * `customer_products`.`amount`)) AS `sum`,`customer_products`.`user_id` AS `user_id` from `customer_products` where (yearweek(`customer_products`.`created_at`,0) = yearweek((curdate() - 7),0)) group by `customer_products`.`user_id` union select 'this_week_services' AS `inent`,count(0) AS `count`,sum((`customer_services`.`price` * `customer_services`.`amount`)) AS `sum`,`customer_services`.`user_id` AS `user_id` from `customer_services` where (yearweek(`customer_services`.`created_at`,0) = yearweek(curdate(),0)) group by `customer_services`.`user_id` union select 'last_week_services' AS `inent`,count(0) AS `count`,sum((`customer_services`.`price` * `customer_services`.`amount`)) AS `sum`,`customer_services`.`user_id` AS `user_id` from `customer_services` where (yearweek(`customer_services`.`created_at`,0) = yearweek((curdate() - 7),0)) group by `customer_services`.`user_id` union select 'this_week_expenses' AS `inent`,count(0) AS `count`,sum(`expenses`.`price`) AS `sum`,`expenses`.`user_id` AS `user_id` from `expenses` where (yearweek(`expenses`.`created_at`,0) = yearweek(curdate(),0)) group by `expenses`.`user_id` union select 'last_week_expenses' AS `inent`,count(0) AS `count`,sum(`expenses`.`price`) AS `sum`,`expenses`.`user_id` AS `user_id` from `expenses` where (yearweek(`expenses`.`created_at`,0) = yearweek((curdate() - 7),0)) group by `expenses`.`user_id`
   SQL
-
 end

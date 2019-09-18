@@ -1,7 +1,10 @@
+require 'datatables/products_datatable'
+
 class ProductsController < ApplicationController
 
   def index
     @records = Product.by_user(current_user)
+    @products_datatable = ProductsDatatable.new(user_id: current_user)
   end
 
   def create
@@ -12,6 +15,7 @@ class ProductsController < ApplicationController
   def edit
     @records = Product.by_user(current_user)
     @record = Product.by_user(current_user).find(params[:id])
+    @products_datatable = ProductsDatatable.new(user_id: current_user)
   end
 
   def update

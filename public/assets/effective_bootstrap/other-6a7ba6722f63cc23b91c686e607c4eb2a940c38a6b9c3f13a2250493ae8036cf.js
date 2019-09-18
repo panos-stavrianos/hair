@@ -1,0 +1,1 @@
+(function(){$(document).on("cocoon:before-remove",function(e,o){return $(e.target).data("remove-timeout",1e3),o.fadeOut("slow")})}).call(this);

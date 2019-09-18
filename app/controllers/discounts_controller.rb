@@ -1,6 +1,9 @@
+require 'datatables/discounts_datatable'
+
 class DiscountsController < ApplicationController
   def index
     @records = Discount.by_user(current_user)
+    @discounts_datatable = DiscountsDatatable.new(user_id: current_user)
   end
 
   def create
@@ -11,6 +14,7 @@ class DiscountsController < ApplicationController
   def edit
     @records = Discount.by_user(current_user)
     @record = Discount.by_user(current_user).find(params[:id])
+    @discounts_datatable = DiscountsDatatable.new(user_id: current_user)
   end
 
   def update

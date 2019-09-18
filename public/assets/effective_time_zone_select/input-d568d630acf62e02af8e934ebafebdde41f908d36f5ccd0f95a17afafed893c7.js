@@ -1,0 +1,1 @@
+(function(){(this.EffectiveBootstrap||{}).effective_time_zone_select=function(t,e){var n,i,f,c;if(!(t.val().length>0))try{i=moment().format("Z"),(n=(f=(c=t.find("option").filter(function(){return $(this).text().includes(i)})).find(function(t){return $(t).text().includes("Time")})).length>0?f:c.first()).length>0&&t.val(n.val())}catch(l){}return t.select2(e)}}).call(this);

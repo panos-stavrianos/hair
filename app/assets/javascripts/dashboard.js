@@ -27,14 +27,7 @@ function set_sum() {
     $('.sum').text(`${sum}€`)
 }
 
-
-$(document).on('turbolinks:load', function () {
-    console.log(":load dashboard");
-});
-
-
-$(document).ready(function () {
-    console.log(":ready dashboard");
+function modal_init() {
     $(document).on('click', '#add_service,#add_product', function (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -42,8 +35,6 @@ $(document).ready(function () {
         $('.selectpicker').selectpicker();
         $("input").tooltip();
     });
-
-
     $(document).on('keyup change', "#discount_per_cent,input.amount,input.custom_price,select.in_price", function () {
         set_sum()
     });
@@ -61,4 +52,28 @@ $(document).ready(function () {
         $(this).parent().children(".more_fields").slideToggle();
         $(this).children('i').toggleClass("glyphicon-chevron-up glyphicon-chevron-down");
     });
+    $('.selectpicker').selectpicker();
+    $('.input-group.date').datetimepicker({
+        format: 'DD/MM/YYYY HH:mm',
+        locale: 'el',
+        allowInputToggle: true,
+        showClose: true
+    });
+}
+
+$(document).on('turbolinks:load', function () {
+    $.ajax({
+        url: "/dashboard/create_form_modal",
+        cache: false,
+        success: function (html) {
+            $("#form_modal").html(html);
+            modal_init();
+        }
+    });
+    console.log(":load dashboard");
+});
+
+
+$(document).ready(function () {
+    console.log(":ready dashboard");
 });

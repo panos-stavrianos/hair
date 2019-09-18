@@ -5,9 +5,9 @@ class CustomerService < ApplicationRecord
   belongs_to :discount, optional: true
   belongs_to :user
 
-  scope :by_user, ->(current_user) {where(user: current_user).order(created_at: :desc)}
-  scope :by_user_no_order, ->(current_user) {where(user: current_user)}
-
+  scope :by_user, ->(current_user) { where(user: current_user).order(created_at: :desc) }
+  scope :by_user_no_order, ->(current_user) { where(user: current_user) }
+  scope :between_range, ->(range) { where(range) }
   before_save :time_zone_fix
 
   def create_with_user(current_user)

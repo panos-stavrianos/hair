@@ -1,0 +1,1 @@
+(function(){(this.EffectiveBootstrap||{}).effective_date=function(e,t){var i;if(e.datetimepicker(t),-1!==(i=e.attr("name")||"").indexOf("end_")||-1!==i.indexOf("_end"))return e.trigger("dp.end_date_initialized")}}).call(this);

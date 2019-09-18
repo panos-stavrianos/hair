@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   before_save :price_validation
 
   scope :by_user, ->(current_user) {where(user: current_user).order(name: :desc)}
+  scope :by_user_no_order, ->(current_user) {where(user: current_user)}
 
   def create_with_user(current_user)
     self.user = current_user if user.nil?

@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
@@ -97,3 +97,6 @@ gem 'timezone', '~> 1.0'
 
 gem 'bootstrap-daterangepicker-rails'
 gem 'matrix'
+
+gem 'haml-rails'            # or try using gem 'hamlit-rails'
+gem 'effective_datatables'

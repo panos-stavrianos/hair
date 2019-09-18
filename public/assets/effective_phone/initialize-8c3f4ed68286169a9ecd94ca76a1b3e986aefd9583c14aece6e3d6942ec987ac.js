@@ -1,0 +1,1 @@
+(function(){(this.EffectiveBootstrap||{}).effective_phone=function(e,t){var a;return a=t.mask,delete t.mask,e.mask(a,t)}}).call(this);

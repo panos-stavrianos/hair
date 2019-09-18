@@ -1,6 +1,7 @@
 class Partner < ApplicationRecord
   belongs_to :user
-  scope :by_user, ->(current_user) {where(user: current_user).order(name: :desc)}
+  scope :by_user, ->(current_user) {where(user: current_user)}
+  scope :by_user_no_order, ->(current_user) {where(user: current_user)}
 
   has_many :customer_services, :dependent => :restrict_with_error
   has_many :services, through: :customer_services, :dependent => :restrict_with_error

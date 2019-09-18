@@ -1,15 +1,12 @@
 # noinspection RailsChecklist01
+require 'datatables/customer_products_datatable'
+require 'datatables/customer_services_datatable'
 class DashboardController < ApplicationController
 
   def index
     @tiles = tiles
-    @customers = Customer.by_user(current_user)
-    @products = Product.by_user(current_user).where(enabled: true)
-    @services = Service.by_user(current_user).where(enabled: true)
-    @partners = Partner.by_user(current_user).where(enabled: true)
-    @discounts = Discount.by_user(current_user).where(enabled: true)
-    @customer_services = CustomerService.eager_load(:customer, :service, :partner, :discount).by_user(current_user)
-    @customer_products = CustomerProduct.eager_load(:customer, :product, :partner, :discount).by_user(current_user)
+    @customer_services_datatable = CustomerServicesDatatable.new(user_id: current_user)
+    @customer_products_datatable = CustomerProductsDatatable.new(user_id: current_user)
   end
 
   def products_services_by_day
@@ -19,9 +16,15 @@ class DashboardController < ApplicationController
     ]
     render json: response
   end
-
+  def products_services_by_week
+    response = [
+        {name: "Προϊόντα", data: CustomerProduct.by_user_no_order(current_user).group_by_week(:created_at, format: "%B %d, %Y").count},
+        {name: "Υπηρεσίες", data: CustomerService.by_user_no_order(current_user).group_by_week(:created_at, format: "%B %d, %Y").count}
+    ]
+    render json: response
+  end
   def customers_by_sex
-    results = Customer.by_user_no_order(current_user).group(:sex).count.transform_keys {|k| k == 'woman' ? "Γυναίκες" : "'Ανδρες"}
+    results = Customer.by_user_no_order(current_user).group(:sex).count.transform_keys { |k| k == 'woman' ? "Γυναίκες" : "'Ανδρες" }
     render json: results
   end
 
@@ -30,12 +33,20 @@ class DashboardController < ApplicationController
     render json: results
   end
 
+  def create_form_modal
+    @customers = Customer.by_user(current_user)
+    @products = Product.by_user(current_user).where(enabled: true)
+    @services = Service.by_user(current_user).where(enabled: true)
+    @partners = Partner.by_user(current_user).where(enabled: true)
+    @discounts = Discount.by_user(current_user).where(enabled: true)
+    render partial: 'dashboard/create_form_modal'
+  end
 
   def tiles
     my_tiles = Tile.by_user(current_user)
 
-    all_customers = my_tiles.find {|x| x[:inent] == 'all_customers'}
-    this_week_customers = my_tiles.find {|x| x[:inent] == 'this_week_customers'}
+    all_customers = my_tiles.find { |x| x[:inent] == 'all_customers' }
+    this_week_customers = my_tiles.find { |x| x[:inent] == 'this_week_customers' }
     if all_customers.nil?
       all_customers = Tile.new(count: 0, sum: 0)
     end
@@ -43,8 +54,8 @@ class DashboardController < ApplicationController
       this_week_customers = Tile.new(count: 0, sum: 0)
     end
 
-    this_week_products = my_tiles.find {|x| x[:inent] == 'this_week_products'}
-    last_week_products = my_tiles.find {|x| x[:inent] == 'last_week_products'}
+    this_week_products = my_tiles.find { |x| x[:inent] == 'this_week_products' }
+    last_week_products = my_tiles.find { |x| x[:inent] == 'last_week_products' }
     if this_week_products.nil?
       this_week_products = Tile.new(count: 0, sum: 0)
     end
@@ -53,8 +64,8 @@ class DashboardController < ApplicationController
     end
     last_week_percent_product = (this_week_products.count - last_week_products.count) * 100 / last_week_products.count
 
-    this_week_services = my_tiles.find {|x| x[:inent] == 'this_week_services'}
-    last_week_services = my_tiles.find {|x| x[:inent] == 'last_week_services'}
+    this_week_services = my_tiles.find { |x| x[:inent] == 'this_week_services' }
+    last_week_services = my_tiles.find { |x| x[:inent] == 'last_week_services' }
     if this_week_services.nil?
       this_week_services = Tile.new(count: 0, sum: 0)
     end
@@ -70,8 +81,8 @@ class DashboardController < ApplicationController
     end
     last_week_percent_income = (this_week_income - last_week_income) * 100 / last_week_income
 
-    this_week_expenses = my_tiles.find {|x| x[:inent] == 'this_week_expenses'}
-    last_week_expenses = my_tiles.find {|x| x[:inent] == 'last_week_expenses'}
+    this_week_expenses = my_tiles.find { |x| x[:inent] == 'this_week_expenses' }
+    last_week_expenses = my_tiles.find { |x| x[:inent] == 'last_week_expenses' }
     if this_week_expenses.nil?
       this_week_expenses = Tile.new(count: 0, sum: 0)
     end
