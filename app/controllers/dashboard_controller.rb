@@ -7,6 +7,12 @@ class DashboardController < ApplicationController
     @tiles = tiles
     @customer_services_datatable = CustomerServicesDatatable.new(user_id: current_user)
     @customer_products_datatable = CustomerProductsDatatable.new(user_id: current_user)
+
+    # require 'open-uri'
+    # file = open('https://meme.eq8.eu/noidea.jpg')
+    #
+    # current_user.avatar.attach(io: file, filename: 'some-image.jpg')
+
   end
 
   def products_services_by_day

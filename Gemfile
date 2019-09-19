@@ -100,3 +100,4 @@ gem 'matrix'
 
 gem 'haml-rails'            # or try using gem 'hamlit-rails'
 gem 'effective_datatables'
+gem "google-cloud-storage", "~> 1.11", require: false
