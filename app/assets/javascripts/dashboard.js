@@ -28,6 +28,7 @@ function set_sum() {
 }
 
 function modal_init() {
+    console.log('modal_init');
     $(document).on('click', '#add_service,#add_product', function (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -48,32 +49,41 @@ function modal_init() {
     });
 
     $(document).on('click', ".more_fields_toggle", function () {
-        console.log('more_fields_toggle');
         $(this).parent().children(".more_fields").slideToggle();
         $(this).children('i').toggleClass("glyphicon-chevron-up glyphicon-chevron-down");
     });
-    $('.selectpicker').selectpicker();
-    $('.input-group.date').datetimepicker({
-        format: 'DD/MM/YYYY HH:mm',
-        locale: 'el',
-        allowInputToggle: true,
-        showClose: true
-    });
+
+}
+
+function create_form_modal() {
+    if ($('#form_modal').is(':empty')) {
+        $.ajax({
+            url: "/dashboard/create_form_modal",
+            cache: true,
+            success: function (html) {
+                if ($('#form_modal').is(':empty')) {
+                    $("#form_modal").html(html);
+                    $('.selectpicker').selectpicker();
+                    $('.input-group.date').datetimepicker({
+                        format: 'DD/MM/YYYY HH:mm',
+                        locale: 'el',
+                        allowInputToggle: true,
+                        showClose: true
+                    });
+                }
+            }
+        });
+    }
 }
 
 $(document).on('turbolinks:load', function () {
-    $.ajax({
-        url: "/dashboard/create_form_modal",
-        cache: false,
-        success: function (html) {
-            $("#form_modal").html(html);
-            modal_init();
-        }
-    });
+    create_form_modal();
     console.log(":load dashboard");
 });
 
 
 $(document).ready(function () {
+    create_form_modal();
+    modal_init();
     console.log(":ready dashboard");
 });

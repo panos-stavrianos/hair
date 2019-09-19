@@ -25,7 +25,7 @@ $(document).on('turbolinks:load', function () {
 
 $(document).ready(function () {
     console.log(":ready customers");
-    // refresh_by_range(start, end, "All");
-    // init_MyDaterRangePicker(refresh_by_range);
+     refresh_by_range(start, end, "All");
+     init_MyDaterRangePicker(refresh_by_range);
 });
 
